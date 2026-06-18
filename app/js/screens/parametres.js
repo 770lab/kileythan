@@ -60,7 +60,7 @@ window.KScreens.parametres = function (el, K) {
           <div class="panel-body">
             <div class="field">
               <label>Nom du cabinet</label>
-              <input id="cab-nom" type="text" value="${K.esc(cab.nom || "Cabinet Démo Kileyt")}">
+              <input id="cab-nom" type="text" value="${K.esc(cab.nom || "Cabinet Démo KilEyt")}">
             </div>
             <div class="field">
               <label>Email de contact</label>
@@ -100,7 +100,7 @@ window.KScreens.parametres = function (el, K) {
           <div class="panel-head"><h3>Données de démo</h3></div>
           <div class="panel-body">
             <p style="margin:0 0 1rem;font-size:.86rem;color:hsl(var(--text-muted));line-height:1.5">
-              Kileyt est rempli avec des <b>données de TEST</b> fictives (dossiers, échéances, collaborateurs).
+              KilEyt est rempli avec des <b>données de TEST</b> fictives (dossiers, échéances, collaborateurs).
               Toutes les modifications sont enregistrées localement dans votre navigateur.
               Vous pouvez tout remettre à l'état initial à tout moment.
             </p>

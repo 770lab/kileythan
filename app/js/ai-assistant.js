@@ -8,15 +8,15 @@
     { k: ["crm", "prospect", "client"], a: "Le <b>CRM</b> est un pipeline Kanban. Glisse une carte de colonne en colonne pour faire avancer le prospect, jusqu'à <b>Gagné</b> qui déclenche l'onboarding." },
     { k: ["ged", "document", "piece", "pièce", "manquant"], a: "Dans la <b>GED</b>, les pièces manquantes apparaissent en rouge. Clique sur <b>Demander la pièce</b> pour relancer le client en un clic." },
     { k: ["bilan", "cloture", "clôture", "dca", "ago", "depot", "dépôt"], a: "Le suivi des <b>Bilans</b> récupère les dates de clôture. Le <b>Dépôt des comptes</b> distingue l'approbation (AGO) et le dépôt au greffe (DCA)." },
-    { k: ["humain", "support", "aide"], a: "Je transfère ta demande au support humain. Un membre de l'équipe Kileyt te répond sous peu. 🤝" },
-    { k: ["bonjour", "salut", "hello", "coucou"], a: "Bonjour 👋 Je suis l'assistant Kileyt. Pose-moi une question sur les échéances, le CRM, la GED, les tâches…" },
+    { k: ["humain", "support", "aide"], a: "Je transfère ta demande au support humain. Un membre de l'équipe KilEyt te répond sous peu. 🤝" },
+    { k: ["bonjour", "salut", "hello", "coucou"], a: "Bonjour 👋 Je suis l'assistant KilEyt. Pose-moi une question sur les échéances, le CRM, la GED, les tâches…" },
   ];
   const QUICK = ["Exporter les TVA en attente ?", "Comment créer une tâche ?", "À quoi sert la Synthèse ?", "Parler à un humain"];
 
   function answer(q) {
     const low = q.toLowerCase();
     for (const item of QA) if (item.k.some(w => low.includes(w))) return item.a;
-    return "Bonne question ! Je connais tout Kileyt : échéances, CRM, GED, tâches, bilans, attestations… Reformule, ou clique sur <b>Support humain</b> pour parler à l'équipe.";
+    return "Bonne question ! Je connais tout KilEyt : échéances, CRM, GED, tâches, bilans, attestations… Reformule, ou clique sur <b>Support humain</b> pour parler à l'équipe.";
   }
 
   const KAI = {
@@ -24,17 +24,17 @@
     mount() {
       if (document.getElementById("aiFab")) return;
       const fab = document.createElement("button");
-      fab.id = "aiFab"; fab.className = "ai-fab"; fab.title = "Assistant Kileyt"; fab.innerHTML = "💬";
+      fab.id = "aiFab"; fab.className = "ai-fab"; fab.title = "Assistant KilEyt"; fab.innerHTML = "💬";
       const panel = document.createElement("div");
       panel.className = "ai-panel"; panel.id = "aiPanel";
       panel.innerHTML = `
         <div class="ai-top">
           <div class="av">K</div>
-          <div style="flex:1"><b>Assistant Kileyt</b><br><small style="color:hsl(var(--success))">● En ligne · répond en quelques secondes</small></div>
+          <div style="flex:1"><b>Assistant KilEyt</b><br><small style="color:hsl(var(--success))">● En ligne · répond en quelques secondes</small></div>
           <button class="icon-btn" id="aiClose" style="background:hsl(var(--foreground)/.1);color:#fff">✕</button>
         </div>
         <div class="ai-msgs" id="aiMsgs">
-          <div class="ai-b ai">Bonjour 👋 Je suis l'assistant Kileyt, dispo 24/7. Comment puis-je aider ?</div>
+          <div class="ai-b ai">Bonjour 👋 Je suis l'assistant KilEyt, dispo 24/7. Comment puis-je aider ?</div>
         </div>
         <div class="ai-quick" id="aiQuick">${QUICK.map(q => `<button>${q}</button>`).join("")}</div>
         <div class="ai-input"><input id="aiInput" placeholder="Posez votre question…"><button class="btn btn-gold btn-sm" id="aiSend">➤</button></div>`;

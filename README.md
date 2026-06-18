@@ -1,6 +1,6 @@
-# Kileyt — cockpit du cabinet comptable (clone UX statique)
+# KilEyt — cockpit du cabinet comptable (clone UX statique)
 
-Reproduction statique fidèle, rebrandée **Kileyt**, de l'expérience Teradion, avec une UX enrichie
+Reproduction statique fidèle, rebrandée **KilEyt**, de l'expérience Teradion, avec une UX enrichie
 (parallax, scroll-reveal, transitions). 100% statique, hébergé sur GitHub Pages.
 
 **URL :** https://770lab.com/kileythan/

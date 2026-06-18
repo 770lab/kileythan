@@ -1,7 +1,7 @@
 /* KILEYT — Données de TEST (cabinet fictif). Persistées en localStorage. */
 (function () {
   const SEED = {
-    cabinet: { nom: "Cabinet Démo Kileyt", user: { prenom: "Davy", nom: "Cohen", role: "Associé", initiales: "DC" } },
+    cabinet: { nom: "Cabinet Démo KilEyt", user: { prenom: "Davy", nom: "Cohen", role: "Associé", initiales: "DC" } },
 
     collaborateurs: [
       { id: "c1", nom: "Davy Cohen", initiales: "DC", role: "Associé", couleur: "#e3a008", equipe: "Direction" },

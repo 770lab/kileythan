@@ -5,7 +5,7 @@ window.KScreens.login = function (root, K) {
   <div class="login-wrap">
     <aside class="login-aside">
       <div class="glow"></div>
-      <a class="logo" href="../index.html"><span class="logo-mark">K</span><span><span class="lo-accent">Ki</span>leyt</span></a>
+      <a class="logo" href="../index.html"><span class="logo-mark">K</span><span><span class="lo-accent">Kil</span>Eyt</span></a>
       <div>
         <h2>Simplifie ton quotidien</h2>
         <p class="lead">Le quotidien de votre cabinet simplifié et centralisé.</p>
@@ -15,7 +15,7 @@ window.KScreens.login = function (root, K) {
           <div class="login-feat">Assistant IA disponible 24/7</div>
         </div>
       </div>
-      <small style="color:hsl(var(--text-light));position:relative">© 2026 Kileyt — démo UX</small>
+      <small style="color:hsl(var(--text-light));position:relative">© 2026 KilEyt — démo UX</small>
     </aside>
     <main class="login-main">
       <div class="login-card">

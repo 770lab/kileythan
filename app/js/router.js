@@ -6,6 +6,7 @@
   const NAV = [
     { section: "Principal", items: [
       { id: "dashboard", label: "Tableau de bord", ico: "▦" },
+      { id: "dossiers", label: "Dossiers", ico: "📁" },
       { id: "echeances", label: "Échéances", ico: "📅" },
       { id: "synthese", label: "Synthèse", ico: "📊" },
     ]},
@@ -30,6 +31,7 @@
   const TITLES = {};
   NAV.forEach(s => s.items.forEach(i => TITLES[i.id] = i.label));
   TITLES.parametres = "Paramètres";
+  TITLES.dossier = "Fiche dossier";   // route détail (non affichée dans la nav)
 
   const COUNTS = () => ({
     echeances: K.get("echeances").filter(e => e.statut === "attente" || e.statut === "retard").length,
@@ -54,7 +56,7 @@
     document.getElementById("root").innerHTML = `
     <div class="app">
       <aside class="sidebar" id="sidebar">
-        <div class="brand"><span class="logo-mark">K</span><span><span style="color:hsl(var(--gold))">Ki</span>leyt</span></div>
+        <div class="brand"><span class="logo-mark">K</span><span><span style="color:hsl(var(--gold))">Kil</span>Eyt</span></div>
         <nav id="navList">${navHTML(active)}</nav>
         <a class="nav-item" href="#/parametres" style="margin:.4rem .7rem"><span class="ico">⚙️</span><span>Paramètres</span></a>
         <div class="side-foot">
@@ -98,7 +100,8 @@
     if (!K.session()) { window.KScreens.login(document.getElementById("root"), K); return; }
     let name = (location.hash.replace(/^#\/?/, "") || "dashboard").split("?")[0];
     if (!TITLES[name]) name = "dashboard";
-    renderShell(name);
+    const navActive = name === "dossier" ? "dossiers" : name;
+    renderShell(navActive);
     document.getElementById("screenTitle").textContent = TITLES[name];
     mountScreen(name);
     window.scrollTo(0, 0);

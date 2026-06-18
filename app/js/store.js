@@ -59,5 +59,54 @@
   K.typeBadge = { TVA: "badge-tva", IS: "badge-is", CFE: "badge-cfe", CVAE: "badge-cvae", BILAN: "badge-bilan", DCA: "badge-bilan", AGO: "badge-is", TF: "badge-warning" };
   K.esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
+  /* ---- finances simulées (déterministes par dossier) ---- */
+  K.parseCA = (s) => {
+    if (!s) return 600000;
+    const m = String(s).replace(/\s/g, "").replace(",", ".");
+    const num = parseFloat(m);
+    if (/M/i.test(s)) return Math.round(num * 1e6);
+    if (/k/i.test(s)) return Math.round(num * 1e3);
+    return Math.round(num) || 600000;
+  };
+  K._hash = (str) => { let h = 0; for (let i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) >>> 0; return h; };
+  K.eur = (n) => Math.round(n).toLocaleString("fr-FR") + " €";
+  K.finances = (dossier) => {
+    const d = typeof dossier === "string" ? K.dossier(dossier) : dossier;
+    const ca = K.parseCA(d.ca);
+    const seed = K._hash(d.id + d.secteur);
+    const r = (i) => ((K._hash(d.id + i) % 1000) / 1000); // 0..1 déterministe par axe
+
+    // structure de charges (% du CA) selon secteur, perturbée par dossier
+    const base = {
+      "Tech": { achats: 14, externes: 22, perso: 40, impots: 3, amort: 6, fin: 2 },
+      "Conseil": { achats: 6, externes: 20, perso: 46, impots: 3, amort: 3, fin: 1 },
+      "Santé": { achats: 18, externes: 16, perso: 44, impots: 4, amort: 7, fin: 2 },
+      "BTP": { achats: 38, externes: 14, perso: 30, impots: 3, amort: 5, fin: 3 },
+      "Alimentation": { achats: 42, externes: 16, perso: 28, impots: 3, amort: 4, fin: 2 },
+      "Automobile": { achats: 46, externes: 12, perso: 26, impots: 3, amort: 4, fin: 3 },
+      "Artisanat": { achats: 34, externes: 14, perso: 30, impots: 3, amort: 4, fin: 2 },
+    }[d.secteur] || { achats: 25, externes: 18, perso: 36, impots: 3, amort: 5, fin: 2 };
+
+    const labels = {
+      achats: "Achats / marchandises", externes: "Charges externes (loyers, honoraires…)",
+      perso: "Charges de personnel", impots: "Impôts & taxes",
+      amort: "Dotations aux amortissements", fin: "Charges financières",
+    };
+    const lines = Object.keys(base).map((k, i) => {
+      const pct = Math.max(1, base[k] + (r(k) * 8 - 4)); // ±4 pts
+      return { key: k, label: labels[k], pct: +pct.toFixed(1), montant: Math.round(ca * pct / 100) };
+    });
+    const totalChargesPct = lines.reduce((s, l) => s + l.pct, 0);
+    const margePct = +(100 - totalChargesPct).toFixed(1);
+    const resultat = Math.round(ca * margePct / 100);
+    const treso = Math.round(ca * (0.04 + r("t") * 0.22));         // 4–26% du CA
+    const capitaux = Math.round(ca * (0.18 + r("c") * 0.4));
+    const dettes = Math.round(ca * (0.1 + r("d") * 0.45));
+    const dettesFisc = r("f") > 0.6 ? Math.round(ca * (0.01 + r("g") * 0.04)) : 0;
+    const dso = Math.round(28 + r("s") * 70);                      // délai clients (jours)
+    const endettementPct = +((dettes / Math.max(capitaux, 1)) * 100).toFixed(0);
+    return { ca, lines, totalChargesPct: +totalChargesPct.toFixed(1), margePct, resultat, treso, capitaux, dettes, dettesFisc, dso, endettementPct };
+  };
+
   window.K = K;
 })();

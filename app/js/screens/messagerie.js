@@ -17,7 +17,7 @@ window.KScreens.messagerie = function (el, K) {
   }
 
   function corps(m) {
-    const sender = m.type === "DGFiP" ? "Direction générale des Finances publiques" : "Espace client Kileyt";
+    const sender = m.type === "DGFiP" ? "Direction générale des Finances publiques" : "Espace client KilEyt";
     return `
       <p style="margin:0 0 1rem">Bonjour,</p>
       <p style="margin:0 0 1rem">${K.esc(m.apercu)}</p>

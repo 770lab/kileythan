@@ -1,13 +1,13 @@
 /* KILEYT — marketing shell + scroll UX (parallax, reveal, counters) */
 (function () {
-  const BRAND = "Kileyt";
+  const BRAND = "KilEyt";
 
   /* ---------- Shared header ---------- */
   const headerHTML = `
   <header class="site-header" id="siteHeader">
     <nav class="nav">
       <a class="logo" href="index.html" aria-label="${BRAND}">
-        <span class="logo-mark">K</span><span><span class="lo-accent">Ki</span>leyt</span>
+        <span class="logo-mark">K</span><span><span class="lo-accent">Kil</span>Eyt</span>
       </a>
       <div class="nav-links">
         <a href="fonctionnalites.html">Fonctionnalités</a>
@@ -36,7 +36,7 @@
     <div class="container footer-grid">
       <div>
         <a class="logo" href="index.html" style="margin-bottom:1rem">
-          <span class="logo-mark">K</span><span><span class="lo-accent">Ki</span>leyt</span>
+          <span class="logo-mark">K</span><span><span class="lo-accent">Kil</span>Eyt</span>
         </a>
         <p style="max-width:34ch;color:hsl(var(--text-light))">Le cockpit du cabinet comptable. Échéances, CRM, GED et tâches centralisés en une seule plateforme.</p>
         <p style="margin-top:1rem"><a href="mailto:hello@kileyt.fr">hello@kileyt.fr</a></p>

@@ -130,6 +130,24 @@ table.kt tbody tr:hover{background:hsl(var(--muted))}
 .cal .d.today{outline:2px solid hsl(var(--navy-dark))}
 .cal .dh{text-align:center;font-size:.7rem;color:hsl(var(--text-muted));font-weight:700;padding-bottom:.3rem}
 
+/* ---------- Fiche dossier : import + analyse IA ---------- */
+.dropzone{border:2px dashed hsl(var(--border));border-radius:1rem;padding:2.2rem;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;background:hsl(var(--muted)/.5)}
+.dropzone:hover{border-color:hsl(var(--gold));background:hsl(var(--gold)/.06)}
+.dropzone.drag{border-color:hsl(var(--gold));background:hsl(var(--gold)/.12)}
+.spinner{width:46px;height:46px;border-radius:50%;border:4px solid hsl(var(--muted));border-top-color:hsl(var(--gold));margin:0 auto;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.doc-pill{display:inline-flex;align-items:center;gap:.4rem;background:hsl(var(--navy-dark));color:#fff;padding:.3rem .7rem;border-radius:.5rem;font-size:.8rem;font-weight:700;max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rep-block{border-left:4px solid hsl(var(--border));padding:.8rem 0 .8rem 1.1rem;margin-bottom:1rem}
+.rep-block h4{font-size:1rem;margin-bottom:.5rem}
+.rep-block p{font-weight:500}
+.rep-list{margin:0;padding-left:1.1rem}
+.rep-list li{padding:.3rem 0;font-weight:500;line-height:1.55}
+.rep-syn{border-color:hsl(var(--navy-light))}
+.rep-down{border-color:hsl(var(--danger));background:hsl(var(--danger)/.04)}
+.rep-up{border-color:hsl(var(--success));background:hsl(var(--success)/.05)}
+.rep-warn{border-color:hsl(var(--warning));background:hsl(var(--warning)/.06)}
+.rep-ok{border-color:hsl(var(--gold));background:hsl(var(--gold)/.07)}
+
 /* responsive app */
 .mobile-only{display:none}
 @media(max-width:900px){
