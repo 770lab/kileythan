@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kileyt — Le cockpit du cabinet comptable | Échéances, GED, CRM centralisés</title>
+<meta name="description" content="Kileyt : le deuxième cerveau du cabinet comptable, connecté aux impôts. Échéances, tâches, GED et CRM centralisés en une seule plateforme.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/kileyt.css">
+<style>
+/* hero spotlight + page-specific bits */
+.hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(420px circle at var(--mx,70%) var(--my,20%),hsl(48 100% 61%/.10),transparent 60%)}
+.mock-dash{font-size:.8rem;color:hsl(var(--text-dark))}
+.mock-top{display:flex;align-items:center;gap:.6rem;padding:.8rem 1rem;border-bottom:1px solid hsl(var(--border));background:#fff}
+.mock-dot{width:10px;height:10px;border-radius:50%}
+.mock-body{display:grid;grid-template-columns:200px 1fr;min-height:300px}
+.mock-side{background:hsl(var(--navy-dark));padding:1rem .8rem;display:flex;flex-direction:column;gap:.35rem}
+.mock-side a{color:hsl(var(--text-light));font-size:.78rem;padding:.5rem .7rem;border-radius:.5rem;display:flex;gap:.5rem;align-items:center}
+.mock-side a.on{background:hsl(var(--gold)/.16);color:hsl(var(--gold));font-weight:700}
+.mock-main{padding:1.2rem;background:hsl(var(--gray-bg))}
+.mock-row{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid hsl(var(--border));border-radius:.6rem;padding:.6rem .8rem;margin-bottom:.5rem}
+.mock-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-bottom:.9rem}
+.mock-kpi{background:#fff;border:1px solid hsl(var(--border));border-radius:.6rem;padding:.7rem}
+.mock-kpi b{font-size:1.3rem;display:block}
+.chat-mock{background:hsl(var(--navy-light));border:1px solid hsl(var(--foreground)/.12);border-radius:16px;padding:1.2rem;max-width:440px}
+.chat-head{display:flex;align-items:center;gap:.7rem;padding-bottom:.9rem;border-bottom:1px solid hsl(var(--foreground)/.1);margin-bottom:1rem}
+.chat-head .av{width:38px;height:38px;border-radius:10px;background:hsl(var(--gold));display:grid;place-items:center;color:hsl(var(--navy-dark));font-weight:800}
+.bubble{padding:.7rem .9rem;border-radius:12px;font-size:.85rem;margin-bottom:.7rem;max-width:85%}
+.bubble.me{background:hsl(var(--gold));color:hsl(var(--navy-dark));margin-left:auto;font-weight:600}
+.bubble.ai{background:hsl(var(--foreground)/.08);color:#fff}
+.chat-input{display:flex;gap:.5rem;margin-top:.6rem}
+.chat-input input{flex:1;background:hsl(var(--foreground)/.07);border:1px solid hsl(var(--foreground)/.12);border-radius:10px;padding:.6rem .8rem;color:#fff;font-family:inherit}
+.fiscal-card{background:#fff;border-radius:14px;padding:1.4rem;box-shadow:var(--shadow-lg);color:hsl(var(--text-dark))}
+.fiscal-row{display:flex;justify-content:space-between;align-items:center;padding:.6rem 0;border-bottom:1px solid hsl(var(--border))}
+.check-list li{display:flex;gap:.7rem;align-items:flex-start;padding:.5rem 0;color:hsl(var(--text-light))}
+.check-list li::before{content:"✓";color:hsl(var(--gold));font-weight:900;flex:none}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+@media(max-width:900px){.split{grid-template-columns:1fr;gap:2rem}.mock-body{grid-template-columns:1fr}.mock-side{flex-direction:row;overflow:auto}}
+.nav-mobile{display:none;flex-direction:column;padding:1rem 24px;gap:.3rem;background:hsl(var(--navy-dark));border-top:1px solid hsl(var(--foreground)/.08)}
+.nav-mobile.open{display:flex}
+.nav-mobile a{color:#fff;padding:.6rem 0;font-weight:600}
+.nav-burger{font-size:1.4rem;color:#fff}
+</style>
+</head>
+<body>
+<div id="mount-header"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="glow glow-gold parallax" data-parallax="0.06"></div>
+    <div class="glow glow-blue parallax" data-parallax="0.1"></div>
+  </div>
+  <div class="container">
+    <div class="hero-pills">
+      <span class="pill pill-glass"><span class="avatars">
+        <span style="background:#e3a008">JD</span><span style="background:#9333ea">ML</span><span style="background:#0ea5e9">PT</span><span style="background:#16a34a">AC</span>
+      </span> Déjà adopté par +110 cabinets</span>
+      <span class="pill pill-glass">✨ Nouveau · Assistant IA 24/7</span>
+    </div>
+    <h1>Le deuxième cerveau du cabinet <span class="gold-text">connecté aux impôts.</span></h1>
+    <p class="lead">Le cockpit du cabinet : échéances, tâches, GED et CRM centralisés.</p>
+    <div class="hero-cta">
+      <a class="btn btn-gold btn-lg" href="app/">Réserver une démo</a>
+      <a class="btn btn-ghost btn-lg" href="fonctionnalites.html" style="border:1.5px solid hsl(var(--foreground)/.2)">Voir les fonctionnalités</a>
+    </div>
+
+    <!-- product mock -->
+    <div class="hero-mock reveal-scale" style="margin-top:3.2rem">
+      <div class="mock-top">
+        <span class="mock-dot" style="background:#ff5f57"></span>
+        <span class="mock-dot" style="background:#febc2e"></span>
+        <span class="mock-dot" style="background:#28c840"></span>
+        <span style="margin-left:.6rem;font-weight:700;color:hsl(var(--text-muted))">app.kileyt.fr — Tableau de bord</span>
+      </div>
+      <div class="mock-body mock-dash">
+        <div class="mock-side">
+          <a class="on">▦ Tableau de bord</a>
+          <a>📅 Échéances</a>
+          <a>📊 Synthèse</a>
+          <a>👥 CRM</a>
+          <a>✓ Tâches</a>
+          <a>📁 GED</a>
+        </div>
+        <div class="mock-main">
+          <div class="mock-kpis">
+            <div class="mock-kpi"><small class="muted">Dossiers</small><b>148</b></div>
+            <div class="mock-kpi"><small class="muted">Échéances 7j</small><b class="gold-text">12</b></div>
+            <div class="mock-kpi"><small class="muted">Messages</small><b>19</b></div>
+          </div>
+          <div class="mock-row"><span><span class="badge badge-tva">TVA</span> SAS Martin</span><span class="badge badge-success">Validée</span></div>
+          <div class="mock-row"><span><span class="badge badge-is">IS</span> Dupont SARL</span><span class="badge badge-warning">En attente</span></div>
+          <div class="mock-row"><span><span class="badge badge-cfe">CFE</span> Client Lemoine</span><span class="badge badge-danger">Échéance 1j</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="float-chip float-anim" style="top:62%;left:4%">✓ Connecté à impots.gouv</div>
+    <div class="float-chip float-anim" style="top:48%;right:3%;animation-delay:1.5s">📅 12 échéances cette semaine</div>
+  </div>
+</section>
+
+<!-- IMPOTS -->
+<section class="section section-dark">
+  <div class="container split">
+    <div class="reveal">
+      <span class="eyebrow">Connexion officielle</span>
+      <h2>Connecté directement à <span class="gold-text">impots.gouv.fr</span></h2>
+      <p class="lead" style="color:hsl(var(--text-light))">Kileyt récupère automatiquement les données fiscales de vos clients. Plus besoin de jongler entre les plateformes.</p>
+      <ul class="check-list" style="margin-top:1.2rem">
+        <li>Synchronisation automatique des échéances TVA, IS, CFE</li>
+        <li>Connexion sécurisée via API officielle</li>
+        <li>Alertes en temps réel sur les anomalies</li>
+        <li>Attestations de régularité fiscale en 1 clic</li>
+      </ul>
+    </div>
+    <div class="reveal d2">
+      <div class="fiscal-card parallax" data-parallax="0.05">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem">
+          <b>Échéances TVA</b><span class="badge badge-success">Synchronisé</span>
+        </div>
+        <div class="fiscal-row"><span>✓ 24 validées</span><span class="badge badge-success">OK</span></div>
+        <div class="fiscal-row"><span>⏳ 3 en attente</span><span class="badge badge-warning">À valider</span></div>
+        <div class="fiscal-row" style="border:none"><span>🇫🇷 DGFiP</span><small class="muted">Service compatible</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ASSISTANT IA -->
+<section class="section section-dark" id="assistant-ia" style="background:hsl(218 50% 9%)">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Nouveau · Intelligence artificielle</span>
+      <h2>Votre assistant IA disponible 24/7</h2>
+      <p class="lead" style="color:hsl(var(--text-light))">Posez vos questions sur Kileyt, obtenez des réponses instantanées, et basculez vers le support humain en un clic si besoin.</p>
+    </div>
+    <div class="split">
+      <div class="grid grid-2 reveal">
+        <div class="feat"><div class="feat-icon">⚡</div><h3>Réponses instantanées</h3><p class="muted">L'IA connaît tout Kileyt sur le bout des doigts : process, raccourcis, modules, exports.</p></div>
+        <div class="feat"><div class="feat-icon">🕐</div><h3>Disponible 24/7</h3><p class="muted">Posez votre question quand vous voulez, même à 23h. Plus besoin d'attendre le support.</p></div>
+        <div class="feat"><div class="feat-icon">🤝</div><h3>Bascule humain en 1 clic</h3><p class="muted">Question complexe ou spécifique ? L'IA vous transfère immédiatement au support.</p></div>
+        <div class="feat"><div class="feat-icon">📍</div><h3>Présent partout</h3><p class="muted">Accessible en bas à droite de chaque page. Le contexte de votre dossier est pris en compte.</p></div>
+      </div>
+      <div class="reveal d2">
+        <div class="chat-mock parallax" data-parallax="0.04">
+          <div class="chat-head">
+            <div class="av">K</div>
+            <div><b style="color:#fff">Assistant Kileyt</b><br><small style="color:hsl(var(--success))">● En ligne · Répond en quelques secondes</small></div>
+            <span class="pill pill-glass" style="margin-left:auto;font-size:.7rem">Support humain</span>
+          </div>
+          <div class="bubble me">Comment exporter toutes les TVA en attente de validation ?</div>
+          <div class="bubble ai">Va sur la page <b>Suivi des échéances</b>, applique le filtre :<br>• Type : <b>TVA</b><br>• Statut : <b>À valider</b><br>Puis clique sur <b class="gold-text">Exporter Excel</b> en haut à droite.</div>
+          <div class="chat-input"><input placeholder="Posez votre question…" disabled><button class="btn btn-gold btn-sm">➤</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEME -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal"><span class="eyebrow">Le constat</span><h2>Le problème que vous connaissez</h2></div>
+    <div class="ba-grid">
+      <div class="ba-col ba-before reveal">
+        <h3>😟 Avant Kileyt</h3>
+        <ul>
+          <li>Échéances sur Excel, post-its et rappels mentaux</li>
+          <li>Relances par mail, sans suivi centralisé</li>
+          <li>Documents éparpillés entre Drive, mail et serveur</li>
+          <li>Perte d'information à chaque rotation d'équipe</li>
+          <li>Aucune visibilité globale sur la production</li>
+        </ul>
+      </div>
+      <div class="ba-col ba-after reveal d2">
+        <h3>✨ Avec Kileyt</h3>
+        <ul>
+          <li>Toutes les échéances dans un seul calendrier intelligent</li>
+          <li>Relances automatisées et tracées dans le CRM</li>
+          <li>GED centralisée avec demande de pièces en un clic</li>
+          <li>Historique complet accessible à toute l'équipe</li>
+          <li>Tableau de bord en temps réel sur chaque dossier</li>
+        </ul>
+      </div>
+    </div>
+    <p class="center lead reveal" style="margin-top:2.2rem;font-weight:700;color:hsl(var(--navy-dark))">Votre cabinet ne manque pas de talent. Il manquait juste d'un système.</p>
+  </div>
+</section>
+
+<!-- FONCTIONNALITES -->
+<section class="section" style="background:#fff">
+  <div class="container">
+    <div class="section-head reveal"><span class="eyebrow">Fonctionnalités</span><h2>Tout ce dont votre cabinet a besoin</h2><p class="lead">Un seul espace pour piloter vos dossiers, vos tâches et vos échéances.</p></div>
+    <div class="grid grid-3">
+      <div class="feat reveal"><div class="num">01 · NOUVEAU</div><div class="feat-icon">🤖</div><h3>Assistant IA 24/7</h3><p class="muted">Posez vos questions à tout moment. Réponses instantanées, bascule vers un humain en 1 clic.</p></div>
+      <div class="feat reveal d1"><div class="num">02</div><div class="feat-icon">📅</div><h3>Pilotage des échéances</h3><p class="muted">TVA, IS, CFE, Bilan… Visualisez et suivez toutes vos échéances avec des barres de progression claires.</p></div>
+      <div class="feat reveal d2"><div class="num">03</div><div class="feat-icon">👥</div><h3>CRM prospects</h3><p class="muted">Pipeline commercial clair et intuitif. Transformez vos prospects en clients sans perdre une opportunité.</p></div>
+      <div class="feat reveal d1"><div class="num">04</div><div class="feat-icon">🚀</div><h3>Onboarding intelligent</h3><p class="muted">Connecté à l'INPI pour détecter les créations de sociétés et déclencher automatiquement l'onboarding.</p></div>
+      <div class="feat reveal d2"><div class="num">05</div><div class="feat-icon">📁</div><h3>GED et pièces manquantes</h3><p class="muted">Centralisation intelligente de tous les documents. Demandez les pièces manquantes en un clic.</p></div>
+      <div class="feat reveal d3" style="display:flex;flex-direction:column;justify-content:center;align-items:flex-start;background:hsl(var(--gold)/.1);border-color:hsl(var(--gold)/.4)">
+        <h3>+ 15 modules</h3><p class="muted" style="margin-bottom:1rem">CVAE, bilans, dépôt des comptes, habilitations, attestations, équipes…</p>
+        <a class="btn btn-navy btn-sm" href="fonctionnalites.html">Découvrir toutes les fonctionnalités →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAS D'USAGE -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-head reveal"><span class="eyebrow">Cas d'usage</span><h2>Du premier contact à la production</h2><p class="lead" style="color:hsl(var(--text-light))">Un parcours fluide et automatisé, connecté à vos outils existants.</p></div>
+    <div class="grid grid-3">
+      <div class="feat reveal"><div class="feat-icon">🎯</div><h3>Prospection & Onboarding</h3><p class="muted" style="color:hsl(var(--text-light))">Du premier contact à l'intégration complète du client, tout est tracé et automatisé.</p></div>
+      <div class="feat reveal d1"><div class="feat-icon">🔄</div><h3>Synchronisation fiscale</h3><p class="muted" style="color:hsl(var(--text-light))">Connexion à impots.gouv et vos outils comptables. Échéances et dossiers créés automatiquement.</p></div>
+      <div class="feat reveal d2"><div class="feat-icon">✅</div><h3>Production fluide</h3><p class="muted" style="color:hsl(var(--text-light))">Tâches affectées, documents centralisés, historique conservé. Rien ne se perd.</p></div>
+    </div>
+    <p class="center muted reveal" style="margin:2.5rem 0 1rem;color:hsl(var(--text-light))">Connecté à votre écosystème</p>
+    <div class="logos-strip reveal">
+      <span class="logo-chip">🇫🇷 impots.gouv</span>
+      <span class="logo-chip">🅿️ Pennylane</span>
+      <span class="logo-chip">🏛️ INPI</span>
+      <span class="logo-chip">📄 Pappers</span>
+    </div>
+    <div class="center" style="margin-top:2.5rem"><a class="btn btn-gold" href="cas-usage.html">Voir le parcours détaillé</a></div>
+  </div>
+</section>
+
+<!-- MOBILE -->
+<section class="section" style="background:#fff">
+  <div class="container split">
+    <div class="reveal">
+      <span class="eyebrow">Disponible sur iOS · Android à venir</span>
+      <h2>Votre cabinet dans votre poche</h2>
+      <p class="lead">Suivez vos échéances, recevez les notifications importantes et accédez à vos dossiers depuis votre mobile.</p>
+      <ul class="check-list" style="margin-top:1rem;color:hsl(var(--text-muted))">
+        <li style="color:hsl(var(--text-muted))">Notifications push instantanées</li>
+        <li style="color:hsl(var(--text-muted))">Valider des tâches en mobilité</li>
+        <li style="color:hsl(var(--text-muted))">Vue dossier + chiffres clés</li>
+        <li style="color:hsl(var(--text-muted))">Sync temps réel avec le web</li>
+      </ul>
+      <a class="btn btn-navy" style="margin-top:1.2rem" href="app/"> Télécharger dans l'App Store</a>
+    </div>
+    <div class="reveal d2 center">
+      <div class="parallax" data-parallax="0.08" style="display:inline-block;background:hsl(var(--navy-dark));border-radius:34px;padding:14px;box-shadow:var(--shadow-lg);max-width:280px">
+        <div style="background:hsl(var(--gray-bg));border-radius:24px;overflow:hidden;text-align:left">
+          <div style="background:hsl(var(--navy-dark));color:#fff;padding:1rem">
+            <small style="color:hsl(var(--text-light))">BONJOUR</small><br><b>Cabinet Dupont</b>
+            <div style="margin-top:.8rem;background:hsl(var(--gold));color:hsl(var(--navy-dark));border-radius:10px;padding:.6rem .8rem"><small>CETTE SEMAINE</small><br><b style="font-size:1.4rem">12 échéances</b></div>
+          </div>
+          <div style="padding:.8rem">
+            <div class="mock-row" style="margin-bottom:.4rem"><span><span class="badge badge-tva">TVA</span> SAS Martin</span><small class="muted">2h</small></div>
+            <div class="mock-row" style="margin-bottom:.4rem"><span><span class="badge badge-bilan">Bilan</span> Dupont SARL</span><small class="muted">5h</small></div>
+            <div class="mock-row"><span><span class="badge badge-cfe">CFE</span> Lemoine</span><small class="muted">1j</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS + TEMOIGNAGES -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-head reveal"><span class="eyebrow">Témoignages</span><h2>Ils nous font confiance</h2></div>
+    <div class="stat-row reveal" style="margin-bottom:3rem">
+      <div class="stat"><div class="n" data-count="110" data-suffix="+">0</div><div class="l">Cabinets utilisateurs</div></div>
+      <div class="stat"><div class="n" data-count="15" data-suffix="k+">0</div><div class="l">Dossiers gérés</div></div>
+      <div class="stat"><div class="n" data-count="98" data-suffix="%">0</div><div class="l">Satisfaction client</div></div>
+      <div class="stat"><div class="n" data-count="2" data-suffix="h">0</div><div class="l">Gagnées par jour</div></div>
+    </div>
+    <div class="grid grid-3">
+      <div class="tcard reveal"><p>« Outil facile d'utilisation, intuitif, gain de temps sur les suivis des échéances synchro avec impôts gouv… Je vous laisse découvrir par vous-même. »</p><div class="who"><span class="ava">RB</span><div><b>Ruben Benabou</b><small>Expert-comptable · Fiscodit</small></div></div></div>
+      <div class="tcard reveal d1"><p>« La connexion directe au compte fiscal récupère l'ensemble des échéances sans action manuelle. La synchro Pennylane est un luxe ! »</p><div class="who"><span class="ava">DO</span><div><b>Dove Ouaki</b><small>Expert-comptable · AGE Conseils</small></div></div></div>
+      <div class="tcard reveal d2"><p>« L'outil qu'on devrait tous avoir. Ayant été aux prémices, on adore et on peut plus s'en passer ! Bravo les gars !! »</p><div class="who"><span class="ava">DZ</span><div><b>Dan Alexandre Zerbib</b><small>Expert-comptable · Stratton</small></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITE -->
+<section class="section" style="background:#fff">
+  <div class="container">
+    <div class="section-head reveal"><span class="eyebrow">Sécurité & Conformité</span><h2>Vos données sont entre de bonnes mains</h2></div>
+    <div class="grid grid-4">
+      <div class="feat reveal center"><div class="feat-icon" style="margin:0 auto 1rem">🛡️</div><h3>Conforme RGPD</h3></div>
+      <div class="feat reveal d1 center"><div class="feat-icon" style="margin:0 auto 1rem">🇪🇺</div><h3>Hébergement européen</h3></div>
+      <div class="feat reveal d2 center"><div class="feat-icon" style="margin:0 auto 1rem">💾</div><h3>Sauvegardes quotidiennes</h3></div>
+      <div class="feat reveal d3 center"><div class="feat-icon" style="margin:0 auto 1rem">🔑</div><h3>Gestion des accès et rôles</h3></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal"><span class="eyebrow">Tarification dégressive</span><h2>Un tarif qui s'adapte à votre volume</h2><p class="lead">Plus vous gérez de dossiers, moins vous payez par dossier. Toutes les fonctionnalités incluses.</p></div>
+    <div class="price-grid">
+      <div class="price-card reveal"><span class="tier">STARTUP</span><div class="muted">100 dossiers</div><div class="amt">149€ <small>HT/mois</small></div><div class="muted">soit 1,49€/dossier en moyenne</div><a class="btn btn-outline" style="margin-top:1rem" href="tarifs.html">Choisir</a></div>
+      <div class="price-card featured reveal d1"><span class="ribbon">POPULAIRE</span><span class="tier">SCALE</span><div class="muted">500 dossiers</div><div class="amt">549€ <small>HT/mois</small></div><div class="muted">soit 1,10€/dossier en moyenne</div><a class="btn btn-gold" style="margin-top:1rem" href="tarifs.html">Choisir</a></div>
+      <div class="price-card reveal d2"><span class="tier">LICORNE</span><div class="muted">2 000 dossiers</div><div class="amt">1 790€ <small>HT/mois</small></div><div class="muted">soit 0,90€/dossier en moyenne</div><a class="btn btn-outline" style="margin-top:1rem" href="tarifs.html">Choisir</a></div>
+    </div>
+    <p class="center muted reveal" style="margin-top:2rem">Parrainage : jusqu'à 20% de réduction par filleul · <a class="gold-text" style="font-weight:700" href="tarifs.html">Calculer mon tarif →</a></p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section section-dark center" style="background:hsl(218 50% 9%)">
+  <div class="container reveal">
+    <h2>Prêt à simplifier votre quotidien ?</h2>
+    <p class="lead" style="max-width:50ch;margin:1rem auto 2rem;color:hsl(var(--text-light))">Rejoignez les cabinets qui ont déjà adopté Kileyt pour un parcours client fluide et automatisé.</p>
+    <a class="btn btn-gold btn-lg" href="app/">Réserver une démo</a>
+  </div>
+</section>
+
+<div id="mount-footer"></div>
+<script src="assets/js/marketing.js"></script>
+</body>
+</html>
