@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cas d'usage — Kileyt</title>
+  <meta name="description" content="Découvrez le parcours client complet de Kileyt : du premier contact à la production, 8 étapes fluides et automatisées pour un cabinet comptable sans friction.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/kileyt.css">
+  <style>
+    .journey-steps .step { position: relative; }
+    .journey-steps .step + .step { margin-top: 1.5rem; }
+    .step-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      flex-wrap: wrap;
+      margin-top: 2.5rem;
+    }
+    .step-flow .flow-dot {
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: .85rem;
+      color: hsl(var(--navy-dark));
+      background: hsl(var(--gold));
+    }
+    .step-flow .flow-line {
+      width: 1.6rem;
+      height: 2px;
+      background: hsl(var(--border));
+    }
+    .cta-center { text-align: center; }
+    .cta-center .lead { margin-left: auto; margin-right: auto; }
+  </style>
+</head>
+<body>
+  <div id="mount-header"></div>
+
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Parcours client complet</p>
+        <h2>Du premier contact à la production</h2>
+        <p class="lead">Un parcours fluide, automatisé et connecté à vos outils. Chaque étape s'enchaîne naturellement, sans ressaisie ni perte d'information.</p>
+      </div>
+      <div class="logos-strip reveal d1">
+        <span class="logo-chip">🇫🇷 impots.gouv</span>
+        <span class="logo-chip">🅿️ Pennylane</span>
+        <span class="logo-chip">🏛️ INPI</span>
+        <span class="logo-chip">📄 Pappers</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Le parcours étape par étape</p>
+        <h2>8 étapes pour un cabinet sans friction</h2>
+        <p class="lead">De la prise de contact à la production, chaque dossier suit un fil continu où l'information circule sans rupture.</p>
+      </div>
+
+      <div class="journey-steps">
+        <div class="step reveal">
+          <div class="step-n">01</div>
+          <h3>Rendez-vous prospect</h3>
+          <p class="muted">Premier contact qualifié dans votre pipeline CRM. Toutes les informations centralisées dès le départ.</p>
+          <ul class="check-list">
+            <li>Création auto de la fiche prospect</li>
+            <li>Historique des échanges</li>
+            <li>Rappels/relances programmés</li>
+            <li>Prise de notes dans le CRM</li>
+          </ul>
+        </div>
+
+        <div class="step reveal">
+          <div class="step-n">02</div>
+          <h3>Suivi et qualification</h3>
+          <p class="muted">Suivez votre prospect à travers le pipeline. Chaque interaction est tracée.</p>
+          <ul class="check-list">
+            <li>Pipeline visuel Kanban</li>
+            <li>Notes et pièces jointes</li>
+            <li>Affectation du futur gestionnaire</li>
+            <li>Scoring des opportunités</li>
+          </ul>
+        </div>
+
+        <div class="step reveal">
+          <div class="step-n">03</div>
+          <h3>Conversion → Onboarding</h3>
+          <p class="muted">Le prospect devient client. L'onboarding démarre automatiquement avec une checklist personnalisée.</p>
+          <ul class="check-list">
+            <li>Checklist pré-configurée</li>
+            <li>Demande de pièces en 1 clic</li>
+            <li>Suivi par étape</li>
+            <li>Notifications client</li>
+          </ul>
+        </div>
+
+        <div class="step reveal">
+          <div class="step-n">04</div>
+          <h3>Affectation du dossier &amp; équipes</h3>
+          <p class="muted">Affectez chaque dossier au bon collaborateur — ou à une équipe entière.</p>
+          <ul class="check-list">
+            <li>Affectation par collaborateur ou équipe</li>
+            <li>Regroupement en pôles</li>
+            <li>Affectation à toute une équipe</li>
+            <li>Alertes dossiers non affectés</li>
+            <li>Rôles et permissions fines</li>
+          </ul>
+        </div>
+
+        <div class="step reveal">
+          <div class="step-n">05</div>
+          <h3>Échéances fiscales</h3>
+          <p class="muted">Les échéances TVA, IS, CFE sont automatiquement synchronisées depuis impots.gouv.</p>
+          <ul class="check-list">
+            <li>Connexion officielle API impots.gouv</li>
+            <li>Sync TVA mensuelle/trimestrielle</li>
+            <li>Alertes IS, CFE, CVAE, Taxe foncière</li>
+            <li>Attestations de régularité</li>
+          </ul>
+        </div>
+
+        <div class="step reveal">
+          <div class="step-n">06</div>
+          <h3>Suivi des tâches</h3>
+          <p class="muted">Attribuez les tâches à votre équipe. Chacun sait ce qu'il doit faire.</p>
+          <ul class="check-list">
+            <li>Vue Kanban et calendrier</li>
+            <li>Affectation collaborateur/équipe</li>
+            <li>Deadlines et rappels</li>
+            <li>Rapports de productivité</li>
+          </ul>
+        </div>
+
+        <div class="step reveal">
+          <div class="step-n">07</div>
+          <h3>GED intelligente</h3>
+          <p class="muted">Tous les documents centralisés et classés automatiquement.</p>
+          <ul class="check-list">
+            <li>Classement auto par type</li>
+            <li>Demande de pièces manquantes en 1 clic</li>
+            <li>Historique des versions</li>
+            <li>Récupération auto Pappers</li>
+            <li>Recherche full-text</li>
+          </ul>
+        </div>
+
+        <div class="step reveal">
+          <div class="step-n">08</div>
+          <h3>Historique complet</h3>
+          <p class="muted">Tout est centralisé. En cas de départ d'un collaborateur, l'historique reste accessible.</p>
+          <ul class="check-list">
+            <li>Notes liées aux dossiers/tâches</li>
+            <li>Historique accessible à l'équipe</li>
+            <li>Passation facilitée</li>
+            <li>Recherche dans tout l'historique</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="step-flow reveal d1">
+        <span class="flow-dot">01</span>
+        <span class="flow-line"></span>
+        <span class="flow-dot">02</span>
+        <span class="flow-line"></span>
+        <span class="flow-dot">03</span>
+        <span class="flow-line"></span>
+        <span class="flow-dot">04</span>
+        <span class="flow-line"></span>
+        <span class="flow-dot">05</span>
+        <span class="flow-line"></span>
+        <span class="flow-dot">06</span>
+        <span class="flow-line"></span>
+        <span class="flow-dot">07</span>
+        <span class="flow-line"></span>
+        <span class="flow-dot">08</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Les bénéfices</p>
+        <h2>Pourquoi choisir Kileyt ?</h2>
+        <p class="lead">Un cockpit unique qui transforme la façon dont votre cabinet pilote ses dossiers au quotidien.</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="feat reveal d1">
+          <div class="feat-icon">⏱️</div>
+          <h3>Gain de temps</h3>
+          <p class="muted">Automatisez les tâches répétitives et concentrez-vous sur le conseil.</p>
+        </div>
+        <div class="feat reveal d2">
+          <div class="feat-icon">🔔</div>
+          <h3>Zéro oubli</h3>
+          <p class="muted">Toutes les échéances et relances tracées et rappelées.</p>
+        </div>
+        <div class="feat reveal d3">
+          <div class="feat-icon">🤝</div>
+          <h3>Équipe alignée</h3>
+          <p class="muted">Historique partagé, passation facilitée.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container cta-center">
+      <div class="section-head reveal">
+        <p class="eyebrow">Passez à l'action</p>
+        <h2>Prêt à simplifier votre quotidien ?</h2>
+        <p class="lead">Découvrez comment Kileyt fluidifie chaque étape de votre relation client, du premier rendez-vous à la production.</p>
+      </div>
+      <div class="reveal d1">
+        <a href="app/" class="btn btn-gold btn-lg">Réserver une démo</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="mount-footer"></div>
+  <script src="assets/js/marketing.js"></script>
+</body>
+</html>

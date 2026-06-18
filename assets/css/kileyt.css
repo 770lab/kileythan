@@ -263,6 +263,19 @@ h3{font-size:1.25rem;font-weight:700}
 .logos-strip{display:flex;gap:2.5rem;justify-content:center;align-items:center;flex-wrap:wrap;opacity:.9}
 .logo-chip{display:flex;align-items:center;gap:.6rem;font-weight:800;color:hsl(var(--text-light));font-size:1.1rem}
 
+/* shared marketing helpers */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.check-list li{display:flex;gap:.7rem;align-items:flex-start;padding:.5rem 0;color:hsl(var(--text-muted))}
+.check-list li::before{content:"✓";color:hsl(var(--gold));font-weight:900;flex:none}
+.section-dark .check-list li{color:hsl(var(--text-light))}
+.nav-mobile{display:none;flex-direction:column;padding:1rem 24px;gap:.3rem;background:hsl(var(--navy-dark));border-top:1px solid hsl(var(--foreground)/.08)}
+.nav-mobile.open{display:flex}
+.nav-mobile a{color:#fff;padding:.6rem 0;font-weight:600}
+.nav-burger{font-size:1.4rem;color:#fff}
+.step{display:flex;gap:1.2rem;align-items:flex-start;padding:1.4rem;border-radius:1rem;background:#fff;border:1px solid hsl(var(--border));box-shadow:var(--shadow-sm)}
+.step .step-n{width:44px;height:44px;border-radius:12px;background:hsl(var(--navy-dark));color:hsl(var(--gold));display:grid;place-items:center;font-weight:800;flex:none}
+@media(max-width:900px){.split{grid-template-columns:1fr;gap:2rem}}
+
 /* ============================================================
    SCROLL ANIMATIONS
    ============================================================ */

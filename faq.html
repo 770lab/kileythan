@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — Kileyt</title>
+  <meta name="description" content="Toutes les réponses pour démarrer avec Kileyt : le cockpit du cabinet comptable. CRM, GED, tâches, échéances, intégrations, sécurité et déploiement.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/kileyt.css">
+  <style>
+    .faq-cat { margin-bottom: 56px; }
+    .faq-cat:last-child { margin-bottom: 0; }
+    .faq-cat h3 {
+      font-size: 1.5rem;
+      margin: 0 0 22px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid hsl(var(--border));
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .faq-cat-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: hsl(var(--gold-pale));
+      color: hsl(var(--navy-dark));
+      font-size: 0.95rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .faq-cat .acc { margin-bottom: 12px; }
+    .faq-cat .acc:last-child { margin-bottom: 0; }
+    .faq-toc {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div id="mount-header"></div>
+
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Centre d'aide</span>
+        <h2>Questions fréquentes</h2>
+        <p class="lead">Tout ce que vous devez savoir avant de démarrer avec Kileyt.</p>
+      </div>
+      <div class="faq-toc reveal d1">
+        <a class="pill" href="#vision">Vision &amp; bénéfices</a>
+        <a class="pill" href="#fonctionnalites">Fonctionnalités cœur</a>
+        <a class="pill" href="#echeances">Échéances &amp; intégrations</a>
+        <a class="pill" href="#securite">Sécurité &amp; conformité</a>
+        <a class="pill" href="#deploiement">Déploiement &amp; support</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="faq-cat reveal" id="vision">
+        <h3><span class="faq-cat-tag">1</span>Vision &amp; bénéfices</h3>
+
+        <details class="acc">
+          <summary>À qui s'adresse Kileyt ?</summary>
+          <div class="acc-body">
+            <p>Kileyt s'adresse aux cabinets d'expertise comptable, qu'ils soient indépendants ou structurés en équipes. Experts-comptables, chefs de mission, collaborateurs et assistants y trouvent un cockpit unique pour piloter clients, tâches et échéances au quotidien.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Quel problème Kileyt résout en priorité ?</summary>
+          <div class="acc-body">
+            <p>La dispersion. Vos informations sont éclatées entre Excel, e-mails, post-it et logiciels spécialisés, ce qui crée des oublis et du stress. Kileyt centralise tout dans un seul cockpit pour que rien ne tombe entre les mailles, en gardant une vision claire de chaque dossier.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Est-ce que Kileyt remplace mon logiciel de production comptable ?</summary>
+          <div class="acc-body">
+            <p>Non, et c'est volontaire. Kileyt ne fait pas la saisie ni les déclarations : il se place au-dessus de votre production comme une couche de pilotage. Il s'intègre à votre stack existante (Pennylane, portails fiscaux) pour orchestrer le travail, sans rien remplacer de votre outil métier.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Quels gains concrets puis-je attendre ?</summary>
+          <div class="acc-body">
+            <p>Moins d'échéances oubliées, des relances clients automatisées, une vision temps réel de la charge de chaque collaborateur et un onboarding client divisé par deux. Concrètement, vous récupérez des heures chaque semaine sur le suivi administratif pour les réinvestir dans le conseil.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Est-ce utile même pour un petit cabinet ?</summary>
+          <div class="acc-body">
+            <p>Oui, particulièrement. Dans un petit cabinet, une seule personne porte souvent le CRM, la GED et le suivi des échéances. Kileyt allège cette charge mentale dès le premier client et grandit avec vous, sans complexité inutile.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Kileyt est-il adapté aux cabinets multi-sites ?</summary>
+          <div class="acc-body">
+            <p>Tout à fait. Kileyt est pensé pour le travail réparti : chaque site, chaque pôle et chaque collaborateur dispose de sa vue, tout en partageant un référentiel client commun. Les responsables gardent une vision consolidée de l'activité, où qu'elle se déroule.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="faq-cat reveal" id="fonctionnalites">
+        <h3><span class="faq-cat-tag">2</span>Fonctionnalités cœur</h3>
+
+        <details class="acc">
+          <summary>Qu'est-ce que le CRM Kileyt apporte de plus ?</summary>
+          <div class="acc-body">
+            <p>Le CRM Kileyt est conçu pour la comptabilité, pas adapté à la va-vite. Chaque fiche client réunit informations légales, missions, documents, échéances et historique au même endroit. Les données fiscales et juridiques se synchronisent depuis impots.gouv et l'INPI pour rester toujours à jour.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Comment fonctionne l'onboarding client ?</summary>
+          <div class="acc-body">
+            <p>Vous lancez un parcours d'onboarding guidé qui collecte automatiquement les pièces nécessaires et crée la fiche client à partir du SIREN. Les documents demandés, reçus et manquants sont suivis en temps réel, ce qui évite les allers-retours interminables par e-mail.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Peut-on créer des checklists par type de client ?</summary>
+          <div class="acc-body">
+            <p>Oui. Vous définissez des modèles de checklists par typologie — micro-entreprise, SCI, BNC, société à l'IS — et Kileyt les applique automatiquement aux nouveaux dossiers concernés. Chaque collaborateur sait ainsi exactement ce qu'il reste à faire pour chaque profil.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>À quoi sert la GED Kileyt ?</summary>
+          <div class="acc-body">
+            <p>La GED (gestion électronique des documents) range et retrouve toutes les pièces de vos clients : statuts, bilans, courriers, justificatifs. Chaque document est rattaché à sa fiche client et à son échéance, classé automatiquement, et accessible en quelques secondes au lieu de fouiller des dossiers partagés.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Comment Kileyt gère les tâches et la production ?</summary>
+          <div class="acc-body">
+            <p>Les tâches sont organisées par client, par mission et par collaborateur, avec un statut clair et une date d'échéance. Vous visualisez la charge de chacun, repriorisez en un glissement et suivez l'avancement de la production sans réunion de pilotage.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Peut-on suivre les relances et les « en attente client » ?</summary>
+          <div class="acc-body">
+            <p>Oui, c'est l'un des points forts de Kileyt. Tout dossier bloqué côté client est marqué « en attente » et déclenche des relances automatiques jusqu'à réception. Vous savez en permanence qui doit quoi, et plus aucune pièce ne reste oubliée dans une boîte mail.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Qu'est-ce que l'assistant IA Kileyt ?</summary>
+          <div class="acc-body">
+            <p>L'assistant IA Kileyt est disponible 24/7 pour répondre à vos questions sur un dossier, rédiger une relance, résumer l'historique d'un client ou retrouver une information. Il s'appuie sur vos données pour vous faire gagner du temps, sans jamais remplacer votre jugement professionnel.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Y a-t-il une application mobile ?</summary>
+          <div class="acc-body">
+            <p>Kileyt est une application web responsive qui s'utilise parfaitement depuis un smartphone ou une tablette, sans installation. Vous consultez vos échéances, validez une tâche ou recevez vos notifications en déplacement, comme depuis votre bureau.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="faq-cat reveal" id="echeances">
+        <h3><span class="faq-cat-tag">3</span>Échéances &amp; intégrations</h3>
+
+        <details class="acc">
+          <summary>Comment Kileyt m'aide sur les échéances ?</summary>
+          <div class="acc-body">
+            <p>Kileyt construit automatiquement le calendrier fiscal et social de chaque client à partir de son régime : TVA, IS, liasses, échéances sociales. Les rappels arrivent suffisamment tôt pour préparer le travail sereinement, et vous gardez une vue globale de toutes les échéances du cabinet.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Les échéances sont-elles personnalisables ?</summary>
+          <div class="acc-body">
+            <p>Oui. Vous ajustez les dates, ajoutez des échéances internes propres au cabinet et définissez l'anticipation des rappels. Vous pouvez aussi créer vos propres modèles d'échéances et les appliquer à un groupe de clients en une fois.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Kileyt s'intègre à Pennylane ?</summary>
+          <div class="acc-body">
+            <p>Oui. La connexion à Pennylane permet de synchroniser vos clients et de relier le pilotage Kileyt à votre production. Vous évitez la double saisie et gardez un référentiel cohérent entre les deux outils.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Peut-on connecter Kileyt aux portails fiscaux ?</summary>
+          <div class="acc-body">
+            <p>Kileyt se connecte à impots.gouv et à l'INPI pour récupérer et tenir à jour les informations légales et fiscales de vos clients. Les données de chaque fiche restent fiables sans ressaisie manuelle, directement à la source officielle.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Est-ce que Kileyt envoie des notifications ?</summary>
+          <div class="acc-body">
+            <p>Oui. Kileyt vous alerte sur les échéances à venir, les tâches qui vous sont assignées, les documents reçus et les dossiers en attente. Vous choisissez les notifications qui comptent pour vous afin de rester concentré sans être noyé.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="faq-cat reveal" id="securite">
+        <h3><span class="faq-cat-tag">4</span>Sécurité &amp; conformité</h3>
+
+        <details class="acc">
+          <summary>Où sont hébergées les données ?</summary>
+          <div class="acc-body">
+            <p>Vos données sont hébergées en France, sur une infrastructure cloud sécurisée et chiffrée. Elles ne quittent pas l'Union européenne, ce qui garantit le respect du cadre réglementaire applicable aux cabinets comptables.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Qui peut voir quoi dans Kileyt ?</summary>
+          <div class="acc-body">
+            <p>L'accès est géré par rôles et par périmètre. Un collaborateur ne voit que les clients et missions qui le concernent, tandis que les responsables disposent d'une vue d'ensemble. Vous gardez la maîtrise complète des droits de chaque membre de l'équipe.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Est-ce conforme au RGPD ?</summary>
+          <div class="acc-body">
+            <p>Oui. Kileyt est conçu dans le respect du RGPD : minimisation des données, droit d'accès et de suppression, hébergement en Europe et contractualisation adaptée. Vous restez responsable de traitement et Kileyt agit en sous-traitant encadré par un contrat dédié.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Y a-t-il un historique des actions ?</summary>
+          <div class="acc-body">
+            <p>Oui. Chaque action importante — modification de fiche, ajout de document, changement de statut — est tracée avec son auteur et sa date. Cet historique offre une transparence totale et facilite le suivi en cas de contrôle ou de question.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Comment sont gérés les documents dans la GED ?</summary>
+          <div class="acc-body">
+            <p>Les documents sont stockés de façon chiffrée, rattachés à leur client et à leur échéance, et soumis aux mêmes règles d'accès que le reste de la plateforme. Chaque pièce est versionnée et retrouvable instantanément, sans dépendre d'un dossier partagé local.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Les données sont-elles isolées entre cabinets ?</summary>
+          <div class="acc-body">
+            <p>Oui. Chaque cabinet dispose d'un espace strictement cloisonné : vos données ne sont jamais mélangées ni accessibles à un autre cabinet utilisateur de Kileyt. L'isolation est garantie au niveau de l'architecture de la plateforme.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="faq-cat reveal" id="deploiement">
+        <h3><span class="faq-cat-tag">5</span>Déploiement &amp; support</h3>
+
+        <details class="acc">
+          <summary>Combien de temps faut-il pour déployer Kileyt ?</summary>
+          <div class="acc-body">
+            <p>La prise en main est rapide : la plupart des cabinets sont opérationnels en quelques jours. La création des fiches clients est largement automatisée grâce aux connexions impots.gouv et INPI, ce qui évite la fastidieuse saisie initiale.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Est-ce que vous accompagnez la mise en place ?</summary>
+          <div class="acc-body">
+            <p>Oui. Nous vous accompagnons sur le paramétrage initial, l'import de vos clients et la formation de votre équipe. L'objectif est que Kileyt devienne un réflexe quotidien, pas un outil de plus à oublier.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Peut-on migrer depuis Excel / Trello / Notion ?</summary>
+          <div class="acc-body">
+            <p>Oui. Vous pouvez importer vos données existantes depuis vos fichiers Excel, et nous vous aidons à reconstituer vos clients, tâches et échéances dans Kileyt. Vous quittez les outils détournés pour une plateforme pensée pour le métier comptable.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Est-ce adapté à une équipe de collaborateurs ?</summary>
+          <div class="acc-body">
+            <p>Pleinement. Kileyt est multi-utilisateur par nature : répartition des portefeuilles, assignation des tâches, suivi de la charge et vue consolidée pour les responsables. Chacun travaille dans son périmètre tout en avançant sur un référentiel commun.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Comment fonctionne la tarification ?</summary>
+          <div class="acc-body">
+            <p>La tarification est simple et lisible, basée sur la taille de votre cabinet et le nombre d'utilisateurs. Retrouvez le détail des offres sur notre page <a href="tarifs.html">Tarifs</a>, et contactez-nous pour un devis adapté à votre structure.</p>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Comment contacter le support ?</summary>
+          <div class="acc-body">
+            <p>Notre équipe est joignable par e-mail à hello@kileyt.fr et répond rapidement. L'assistant IA Kileyt reste par ailleurs disponible 24/7 directement dans l'application pour les questions du quotidien.</p>
+          </div>
+        </details>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Une dernière question ?</span>
+        <h2>Vous n'avez pas trouvé votre réponse ?</h2>
+        <p class="lead">Notre équipe vous répond et vous montre Kileyt en conditions réelles.</p>
+      </div>
+      <div class="reveal d1" style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+        <a class="btn btn-gold btn-lg" href="mailto:hello@kileyt.fr">Contactez-nous</a>
+        <a class="btn btn-outline btn-lg" href="app/">Réserver une démo</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="mount-footer"></div>
+  <script src="assets/js/marketing.js"></script>
+</body>
+</html>

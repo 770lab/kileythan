@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tarifs — Kileyt</title>
+<meta name="description" content="Tarification dégressive Kileyt : un tarif par dossier qui diminue à chaque palier. Toutes les fonctionnalités incluses, quel que soit votre volume. Calculez votre tarif.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/kileyt.css">
+<style>
+/* ---- page-local : tarifs ---- */
+.hero-tarifs{padding:clamp(4rem,9vw,6.5rem) 0 clamp(2.5rem,5vw,3.5rem)}
+.hero-tarifs h2{color:#fff;max-width:18ch;margin:1rem auto 1.2rem;font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:800}
+.hero-tarifs .lead{max-width:54ch;margin:0 auto;color:hsl(var(--text-light))}
+
+/* segmented toggle */
+.seg{display:inline-flex;background:hsl(var(--muted));border:1px solid hsl(var(--border));border-radius:999px;padding:.3rem;gap:.2rem}
+.seg button{padding:.55rem 1.3rem;border-radius:999px;font-weight:700;font-size:.92rem;color:hsl(var(--text-muted));transition:background .2s,color .2s,box-shadow .2s;display:inline-flex;align-items:center;gap:.45rem}
+.seg button.active{background:hsl(var(--navy-dark));color:#fff;box-shadow:var(--shadow-sm)}
+.seg .save{font-size:.7rem;font-weight:800;background:hsl(var(--gold));color:hsl(var(--navy-dark));padding:.1rem .45rem;border-radius:999px}
+
+/* calculator */
+.calc-wrap{max-width:720px;margin:0 auto}
+.calc-controls{background:#fff;border:1px solid hsl(var(--border));border-radius:1.3rem;padding:2rem;box-shadow:var(--shadow);margin-top:1.8rem}
+.calc-row-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1rem;flex-wrap:wrap;gap:.6rem}
+.calc-row-head label{font-weight:700;color:hsl(var(--text-dark))}
+.calc-count{font-size:1.6rem;font-weight:800;color:hsl(var(--navy-dark))}
+.calc-count span{font-size:.95rem;font-weight:600;color:hsl(var(--text-muted))}
+input[type=range].slider{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:999px;background:linear-gradient(90deg,hsl(var(--gold)) 0%,hsl(var(--gold)) var(--fill,30%),hsl(var(--muted)) var(--fill,30%),hsl(var(--muted)) 100%);outline:none;cursor:pointer}
+input[type=range].slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:26px;height:26px;border-radius:50%;background:hsl(var(--navy-dark));border:3px solid hsl(var(--gold));box-shadow:var(--shadow);cursor:pointer;transition:transform .15s}
+input[type=range].slider::-webkit-slider-thumb:hover{transform:scale(1.12)}
+input[type=range].slider::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:hsl(var(--navy-dark));border:3px solid hsl(var(--gold));box-shadow:var(--shadow);cursor:pointer}
+.slider-scale{display:flex;justify-content:space-between;margin-top:.7rem;font-size:.78rem;color:hsl(var(--text-light));font-weight:600}
+
+/* result card */
+.calc-result{margin-top:1.8rem;text-align:center;padding:2.4rem 2rem}
+.calc-result .tier-label{font-size:.8rem;font-weight:800;letter-spacing:.12em;color:hsl(var(--text-muted))}
+.calc-result .amt{font-size:clamp(3rem,7vw,4.2rem);line-height:1;margin:.3rem 0 .2rem;color:hsl(var(--navy-dark))}
+.calc-result .amt small{font-size:1rem;font-weight:600;color:hsl(var(--text-muted))}
+.calc-result .per{color:hsl(var(--text-muted));font-weight:600;font-size:1.02rem}
+.calc-result .per b{color:hsl(var(--navy-dark))}
+.calc-result .pack-line{margin-top:1.2rem;display:inline-flex;align-items:center;gap:.5rem;background:hsl(var(--gold)/.14);color:hsl(40 90% 32%);padding:.5rem 1rem;border-radius:999px;font-weight:700;font-size:.9rem}
+.calc-result .extra{margin-top:1rem;color:hsl(var(--text-muted));font-size:.9rem}
+.calc-result .cta{margin-top:1.7rem;display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+
+/* tiers grid extra */
+.price-card .pack-incl{color:hsl(var(--text-muted));font-weight:600;font-size:.95rem}
+.price-card .supp{margin-top:.4rem;font-size:.85rem;color:hsl(var(--text-light));font-weight:600}
+.price-card .avg{margin-top:.2rem;font-size:.85rem;color:hsl(var(--text-muted))}
+.price-card .spacer{flex:1}
+
+/* small encarts */
+.mini h3{margin-bottom:.4rem}
+.mini .price-tag{font-weight:800;color:hsl(var(--gold));font-size:1.05rem;margin-bottom:.8rem}
+.section-dark .mini .price-tag{color:hsl(var(--gold))}
+
+@media(max-width:560px){.calc-controls,.calc-result{padding:1.5rem}}
+</style>
+</head>
+<body>
+<div id="mount-header"></div>
+
+<!-- HERO -->
+<section class="hero hero-tarifs">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="glow glow-gold parallax" data-parallax="0.06"></div>
+    <div class="glow glow-blue parallax" data-parallax="0.1"></div>
+  </div>
+  <div class="container">
+    <span class="eyebrow">Tarification dégressive</span>
+    <h2>Plus vous grandissez, moins vous payez</h2>
+    <p class="lead">Un tarif par dossier qui diminue à chaque palier. Toutes les fonctionnalités incluses, quel que soit votre volume.</p>
+  </div>
+</section>
+
+<!-- CALCULATEUR -->
+<section class="section" style="background:#fff">
+  <div class="container">
+    <div class="section-head reveal" style="margin-bottom:1.5rem">
+      <span class="eyebrow">Calculateur</span>
+      <h2>Estimez votre tarif en quelques secondes</h2>
+      <p class="lead">Faites glisser le curseur sur votre nombre de dossiers : le tarif et le pack s'ajustent en direct.</p>
+    </div>
+
+    <div class="calc-wrap">
+      <div class="center reveal">
+        <div class="seg" role="tablist" aria-label="Période de facturation">
+          <button type="button" id="seg-month" class="active" aria-pressed="true">Mensuel</button>
+          <button type="button" id="seg-year" aria-pressed="false">Annuel <span class="save">-2 mois</span></button>
+        </div>
+      </div>
+
+      <div class="calc-controls reveal d1">
+        <div class="calc-row-head">
+          <label for="calc-range">Combien de dossiers gérez-vous ?</label>
+          <div class="calc-count"><span id="calc-count-val">300</span> <span>dossiers</span></div>
+        </div>
+        <input type="range" id="calc-range" class="slider" min="50" max="2000" step="10" value="300" aria-label="Nombre de dossiers">
+        <div class="slider-scale">
+          <span>50</span><span>500</span><span>1 000</span><span>1 500</span><span>2 000+</span>
+        </div>
+      </div>
+
+      <div class="price-card featured calc-result reveal-scale d2">
+        <span class="ribbon" id="calc-period-ribbon">MENSUEL</span>
+        <div class="tier-label" id="calc-tier-label">PACK GROWTH</div>
+        <div class="amt"><span id="calc-amt">299</span>€ <small id="calc-amt-unit">HT / mois</small></div>
+        <div class="per">soit <b id="calc-per">1,00 €</b> par dossier en moyenne</div>
+        <div class="pack-line">⚡ <span id="calc-pack">Pack Growth · jusqu'à 250 dossiers inclus</span></div>
+        <div class="extra" id="calc-extra" hidden></div>
+        <div class="cta">
+          <a class="btn btn-gold btn-lg" href="app/">Démarrer l'essai gratuit</a>
+          <a class="btn btn-outline btn-lg" href="app/">Réserver une démo</a>
+        </div>
+      </div>
+      <p class="center muted reveal d3" style="margin-top:1.2rem;font-size:.9rem">Tarifs HT. 14 jours d'essai gratuit, sans engagement. Au-delà de 2 000 dossiers, +0,70 € par dossier supplémentaire.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GRILLE DES PALIERS -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal"><span class="eyebrow">Les 6 paliers</span><h2>Une grille pensée pour chaque taille de cabinet</h2><p class="lead">Du cabinet en lancement au groupe multi-bureaux. Toutes les fonctionnalités sont incluses sur chaque palier.</p></div>
+    <div class="price-grid">
+
+      <div class="price-card reveal">
+        <span class="tier">SEED</span>
+        <div class="pack-incl">50 dossiers inclus</div>
+        <div class="amt">89€ <small>HT/mois</small></div>
+        <div class="avg">soit 1,78 €/dossier en moyenne</div>
+        <div class="supp">+1,20 € / dossier supplémentaire</div>
+        <div class="spacer"></div>
+        <a class="btn btn-outline" style="margin-top:1.2rem" href="app/">Choisir Seed</a>
+      </div>
+
+      <div class="price-card reveal d1">
+        <span class="tier">STARTUP</span>
+        <div class="pack-incl">100 dossiers inclus</div>
+        <div class="amt">149€ <small>HT/mois</small></div>
+        <div class="avg">soit 1,49 €/dossier en moyenne</div>
+        <div class="supp">+1,10 € / dossier supplémentaire</div>
+        <div class="spacer"></div>
+        <a class="btn btn-outline" style="margin-top:1.2rem" href="app/">Choisir Startup</a>
+      </div>
+
+      <div class="price-card reveal d2">
+        <span class="tier">GROWTH</span>
+        <div class="pack-incl">250 dossiers inclus</div>
+        <div class="amt">299€ <small>HT/mois</small></div>
+        <div class="avg">soit 1,20 €/dossier en moyenne</div>
+        <div class="supp">+1,00 € / dossier supplémentaire</div>
+        <div class="spacer"></div>
+        <a class="btn btn-outline" style="margin-top:1.2rem" href="app/">Choisir Growth</a>
+      </div>
+
+      <div class="price-card featured reveal">
+        <span class="ribbon">POPULAIRE</span>
+        <span class="tier">SCALE</span>
+        <div class="pack-incl">500 dossiers inclus</div>
+        <div class="amt">549€ <small>HT/mois</small></div>
+        <div class="avg">soit 1,10 €/dossier en moyenne</div>
+        <div class="supp">+0,90 € / dossier supplémentaire</div>
+        <div class="spacer"></div>
+        <a class="btn btn-gold" style="margin-top:1.2rem" href="app/">Choisir Scale</a>
+      </div>
+
+      <div class="price-card reveal d1">
+        <span class="tier">CENTAURE</span>
+        <div class="pack-incl">1 000 dossiers inclus</div>
+        <div class="amt">989€ <small>HT/mois</small></div>
+        <div class="avg">soit 0,99 €/dossier en moyenne</div>
+        <div class="supp">+0,80 € / dossier supplémentaire</div>
+        <div class="spacer"></div>
+        <a class="btn btn-outline" style="margin-top:1.2rem" href="app/">Choisir Centaure</a>
+      </div>
+
+      <div class="price-card reveal d2">
+        <span class="tier">LICORNE</span>
+        <div class="pack-incl">2 000 dossiers inclus</div>
+        <div class="amt">1 790€ <small>HT/mois</small></div>
+        <div class="avg">soit 0,90 €/dossier en moyenne</div>
+        <div class="supp">+0,70 € / dossier supplémentaire</div>
+        <div class="spacer"></div>
+        <a class="btn btn-outline" style="margin-top:1.2rem" href="app/">Choisir Licorne</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TOUT INCLUS -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-head reveal"><span class="eyebrow">Sans option cachée</span><h2>Toutes les fonctionnalités incluses</h2><p class="lead" style="color:hsl(var(--text-light))">Aucun module en supplément, aucune limite de fonctionnalités. Vous payez au volume de dossiers, c'est tout.</p></div>
+    <div class="grid grid-2 reveal" style="max-width:820px;margin:0 auto">
+      <ul class="check-list">
+        <li>Tableau de bord complet</li>
+        <li>Suivi des échéances</li>
+        <li>Connexion impots.gouv</li>
+        <li>CRM prospects</li>
+        <li>Onboarding auto</li>
+      </ul>
+      <ul class="check-list">
+        <li>GED intelligente</li>
+        <li>Gestion des tâches</li>
+        <li>Sync Pennylane</li>
+        <li>Support prioritaire</li>
+        <li>Mises à jour incluses</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TROIS ENCARTS -->
+<section class="section" style="background:#fff">
+  <div class="container">
+    <div class="section-head reveal"><span class="eyebrow">Encore mieux</span><h2>Démarrez sereinement, économisez en grandissant</h2></div>
+    <div class="grid grid-3">
+
+      <div class="feat mini reveal">
+        <div class="feat-icon">🎁</div>
+        <h3>14 jours d'essai gratuit</h3>
+        <p class="muted" style="margin-bottom:.8rem">Testez Kileyt en conditions réelles, sans carte bancaire.</p>
+        <ul class="check-list">
+          <li style="color:hsl(var(--text-muted))">Accès complet à la plateforme</li>
+          <li style="color:hsl(var(--text-muted))">Accompagnement par notre équipe</li>
+          <li style="color:hsl(var(--text-muted))">Sans engagement</li>
+        </ul>
+      </div>
+
+      <div class="feat mini reveal d1">
+        <div class="feat-icon">🤝</div>
+        <h3>Programme de parrainage</h3>
+        <p class="muted" style="margin-bottom:.8rem">Recommandez Kileyt à un confrère et réduisez votre facture.</p>
+        <ul class="check-list">
+          <li style="color:hsl(var(--text-muted))">20 % de réduction par filleul</li>
+          <li style="color:hsl(var(--text-muted))">Réduction conservée à vie</li>
+          <li style="color:hsl(var(--text-muted))">Cumulable entre filleuls</li>
+        </ul>
+      </div>
+
+      <div class="feat mini reveal d2">
+        <div class="feat-icon">🎓</div>
+        <h3>Paramétrage & formation</h3>
+        <div class="price-tag">250 € HT</div>
+        <p class="muted" style="margin-bottom:.8rem">Une prise en main accélérée, encadrée par nos experts.</p>
+        <ul class="check-list">
+          <li style="color:hsl(var(--text-muted))">2 sessions d'1 h en visio</li>
+          <li style="color:hsl(var(--text-muted))">Paramétrage sur mesure du cabinet</li>
+          <li style="color:hsl(var(--text-muted))">Formation de votre équipe</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section section-dark center" style="background:hsl(218 50% 9%)">
+  <div class="container reveal">
+    <h2>Prêt à simplifier votre cabinet ?</h2>
+    <p class="lead" style="max-width:50ch;margin:1rem auto 2rem;color:hsl(var(--text-light))">14 jours d'essai gratuit, toutes les fonctionnalités incluses, sans engagement. Réservez une démo pour voir Kileyt sur vos dossiers.</p>
+    <div class="hero-cta">
+      <a class="btn btn-gold btn-lg" href="app/">Démarrer l'essai gratuit</a>
+      <a class="btn btn-outline btn-lg" href="app/">Réserver une démo</a>
+    </div>
+  </div>
+</section>
+
+<div id="mount-footer"></div>
+
+<script>
+/* ===== Calculateur de tarif Kileyt ===== */
+(function(){
+  // Paliers : [dossiers inclus, prix mensuel, +€/dossier supp, nom]
+  var TIERS = [
+    {incl:50,   price:89,   supp:1.20, name:"Seed"},
+    {incl:100,  price:149,  supp:1.10, name:"Startup"},
+    {incl:250,  price:299,  supp:1.00, name:"Growth"},
+    {incl:500,  price:549,  supp:0.90, name:"Scale"},
+    {incl:1000, price:989,  supp:0.80, name:"Centaure"},
+    {incl:2000, price:1790, supp:0.70, name:"Licorne"}
+  ];
+
+  var range   = document.getElementById('calc-range');
+  var countEl = document.getElementById('calc-count-val');
+  var amtEl   = document.getElementById('calc-amt');
+  var amtUnit = document.getElementById('calc-amt-unit');
+  var perEl   = document.getElementById('calc-per');
+  var tierEl  = document.getElementById('calc-tier-label');
+  var packEl  = document.getElementById('calc-pack');
+  var extraEl = document.getElementById('calc-extra');
+  var ribbon  = document.getElementById('calc-period-ribbon');
+  var segM    = document.getElementById('seg-month');
+  var segY    = document.getElementById('seg-year');
+
+  var annual = false; // false = mensuel, true = annuel (x10)
+
+  function fmt(n){
+    // entier avec séparateur d'espace
+    return Math.round(n).toLocaleString('fr-FR');
+  }
+  function fmtEur(n){
+    // 2 décimales, séparateur virgule
+    return n.toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' €';
+  }
+
+  function compute(n){
+    var tier=null;
+    // plus petit palier dont 'inclus' >= N
+    for(var i=0;i<TIERS.length;i++){
+      if(TIERS[i].incl >= n){ tier=TIERS[i]; break; }
+    }
+    var monthly, extraText='', usedTier;
+    if(tier){
+      monthly = tier.price;
+      usedTier = tier;
+    } else {
+      // N > 2000
+      var lic = TIERS[TIERS.length-1];
+      monthly = lic.price + (n - lic.incl) * lic.supp;
+      usedTier = lic;
+      extraText = fmt(n - lic.incl) + ' dossiers au-delà du pack Licorne à ' +
+                  lic.supp.toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' € / dossier';
+    }
+    return {monthly:monthly, tier:usedTier, extraText:extraText, n:n};
+  }
+
+  function render(){
+    var n = parseInt(range.value,10);
+    var r = compute(n);
+    var displayPrice = annual ? r.monthly * 10 : r.monthly;
+
+    // fill slider track
+    var pct = (n - range.min) / (range.max - range.min) * 100;
+    range.style.setProperty('--fill', pct + '%');
+
+    countEl.textContent = fmt(n);
+    amtEl.textContent   = fmt(displayPrice);
+    amtUnit.textContent = annual ? 'HT / an' : 'HT / mois';
+
+    // prix par dossier en moyenne (base mensuelle)
+    var perUnit = r.monthly / n;
+    perEl.textContent = fmtEur(perUnit) + (annual ? ' / mois' : '');
+
+    tierEl.textContent = 'PACK ' + r.tier.name.toUpperCase();
+
+    var packLabel;
+    if(n > 2000){
+      packLabel = 'Pack Licorne · ' + fmt(n) + ' dossiers';
+    } else {
+      packLabel = 'Pack ' + r.tier.name + ' · jusqu’à ' + fmt(r.tier.incl) + ' dossiers inclus';
+    }
+    packEl.textContent = packLabel;
+
+    if(r.extraText){
+      extraEl.hidden = false;
+      extraEl.textContent = '+ ' + r.extraText;
+    } else {
+      extraEl.hidden = true;
+      extraEl.textContent = '';
+    }
+
+    ribbon.textContent = annual ? 'ANNUEL · -2 MOIS' : 'MENSUEL';
+  }
+
+  function setPeriod(isAnnual){
+    annual = isAnnual;
+    segM.classList.toggle('active', !annual);
+    segY.classList.toggle('active', annual);
+    segM.setAttribute('aria-pressed', String(!annual));
+    segY.setAttribute('aria-pressed', String(annual));
+    render();
+  }
+
+  range.addEventListener('input', render);
+  segM.addEventListener('click', function(){ setPeriod(false); });
+  segY.addEventListener('click', function(){ setPeriod(true); });
+
+  render();
+})();
+</script>
+
+<script src="assets/js/marketing.js"></script>
+</body>
+</html>

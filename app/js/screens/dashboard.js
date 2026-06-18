@@ -15,7 +15,7 @@ window.KScreens.dashboard = function (el, K) {
   const jours = ["L", "M", "M", "J", "V", "S", "D"];
   const echDays = new Set(ech.filter(e => e.date.startsWith("2026-06")).map(e => parseInt(e.date.split("-")[2], 10)));
   let cal = jours.map(j => `<div class="dh">${j}</div>`).join("");
-  for (let i = 0; i < 6; i++) cal += `<div></div>`; // 1er juin 2026 = lundi → décalage 0; ajustement visuel
+  // 1er juin 2026 = lundi → aucun décalage (semaine commençant le lundi)
   for (let d = 1; d <= 30; d++) {
     cal += `<div class="d ${echDays.has(d) ? "has" : ""} ${d === 18 ? "today" : ""}">${d}</div>`;
   }

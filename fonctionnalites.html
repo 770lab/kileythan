@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fonctionnalités — Kileyt</title>
+<meta name="description" content="Découvrez toutes les fonctionnalités de Kileyt : échéances fiscales, CRM, onboarding, GED et tâches centralisés. Connecté à impots.gouv et à l'INPI.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/kileyt.css">
+<style>
+/* ---- page-local : blocs fonctionnalité ---- */
+.feature-block{padding:clamp(2.6rem,5vw,3.6rem) 0;border-bottom:1px solid hsl(var(--border)/.7)}
+.feature-block:last-of-type{border-bottom:none}
+.feat-eyebrow{display:flex;align-items:center;gap:.9rem;margin-bottom:.9rem}
+.feat-num{font-size:1.6rem;font-weight:800;color:hsl(var(--gold));letter-spacing:-.02em;line-height:1}
+.feat-block-title{margin:.2rem 0 .9rem;font-size:clamp(1.5rem,2.6vw,2rem)}
+.feat-text>.lead{margin-bottom:1.4rem}
+.feature-block .check-list li{padding:.45rem 0}
+
+/* carte visuelle générique */
+.visual-card{background:#fff;border:1px solid hsl(var(--border));border-radius:1.3rem;padding:1.8rem;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+.visual-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,hsl(var(--gold)),hsl(40 100% 52%))}
+.vc-head{display:flex;align-items:center;gap:.7rem;margin-bottom:1.2rem}
+.vc-ico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:1.3rem;background:hsl(var(--gold)/.16);color:hsl(40 90% 38%);flex:none}
+.vc-head b{font-size:1.05rem;color:hsl(var(--text-dark));display:block;line-height:1.2}
+.vc-head small{color:hsl(var(--text-muted));font-weight:600;font-size:.8rem}
+.vc-row{display:flex;align-items:center;justify-content:space-between;gap:.8rem;background:hsl(var(--gray-bg));border:1px solid hsl(var(--border));border-radius:.7rem;padding:.7rem .9rem;margin-bottom:.55rem}
+.vc-row:last-child{margin-bottom:0}
+.vc-row .vc-label{font-weight:700;font-size:.9rem;color:hsl(var(--text-dark))}
+.vc-row .vc-sub{font-size:.78rem;color:hsl(var(--text-muted));font-weight:600}
+.vc-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-bottom:1rem}
+.vc-kpi{background:hsl(var(--gray-bg));border:1px solid hsl(var(--border));border-radius:.7rem;padding:.8rem .7rem;text-align:center}
+.vc-kpi b{font-size:1.45rem;font-weight:800;color:hsl(var(--navy-dark));display:block;line-height:1}
+.vc-kpi span{font-size:.72rem;color:hsl(var(--text-muted));font-weight:600;display:block;margin-top:.25rem}
+.vc-bar{height:8px;border-radius:999px;background:hsl(var(--border));overflow:hidden;margin-top:.4rem}
+.vc-bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,hsl(var(--gold)),hsl(40 100% 52%))}
+.vc-prog{margin-bottom:.7rem}
+.vc-prog .vc-pl{display:flex;justify-content:space-between;font-size:.85rem;font-weight:700;color:hsl(var(--text-dark));margin-bottom:.1rem}
+.vc-prog .vc-pl span{color:hsl(var(--text-muted));font-weight:600}
+
+/* chat IA */
+.ia-card{background:hsl(var(--navy-light));border:1px solid hsl(var(--foreground)/.12);border-radius:1.3rem;padding:1.4rem;box-shadow:var(--shadow-lg)}
+.ia-head{display:flex;align-items:center;gap:.7rem;padding-bottom:.9rem;border-bottom:1px solid hsl(var(--foreground)/.12);margin-bottom:1.1rem}
+.ia-head .av{width:40px;height:40px;border-radius:11px;background:hsl(var(--gold));display:grid;place-items:center;color:hsl(var(--navy-dark));font-weight:900;flex:none}
+.ia-head b{color:#fff;display:block;line-height:1.2}
+.ia-head small{color:hsl(152 56% 62%);font-weight:600;font-size:.78rem;display:flex;align-items:center;gap:.35rem}
+.ia-head small::before{content:"";width:7px;height:7px;border-radius:50%;background:hsl(var(--success))}
+.bubble{padding:.65rem .9rem;border-radius:13px;font-size:.85rem;margin-bottom:.6rem;max-width:88%;line-height:1.45}
+.bubble.me{background:hsl(var(--gold));color:hsl(var(--navy-dark));margin-left:auto;font-weight:600}
+.bubble.ai{background:hsl(var(--foreground)/.08);color:#fff;font-weight:500}
+.ia-input{display:flex;gap:.5rem;margin-top:.4rem}
+.ia-input input{flex:1;background:hsl(var(--foreground)/.07);border:1px solid hsl(var(--foreground)/.14);border-radius:10px;padding:.6rem .8rem;color:#fff;font-family:inherit;font-size:.85rem}
+.ia-input input::placeholder{color:hsl(var(--text-light)/.7)}
+.ia-input .send{width:40px;border-radius:10px;background:hsl(var(--gold));color:hsl(var(--navy-dark));display:grid;place-items:center;font-weight:800;flex:none}
+
+/* tags / kanban mini */
+.vc-tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.3rem}
+.vc-tag{font-size:.72rem;font-weight:700;padding:.25rem .6rem;border-radius:999px;background:hsl(var(--gold)/.15);color:hsl(40 90% 36%)}
+.vc-kanban{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem}
+.vc-kcol{background:hsl(var(--gray-bg));border:1px solid hsl(var(--border));border-radius:.7rem;padding:.6rem}
+.vc-kcol h5{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:hsl(var(--text-muted));margin-bottom:.5rem;font-weight:700}
+.vc-kcard{background:#fff;border:1px solid hsl(var(--border));border-radius:.5rem;padding:.5rem .6rem;font-size:.75rem;font-weight:600;color:hsl(var(--text-dark));margin-bottom:.4rem;box-shadow:var(--shadow-sm)}
+.vc-kcard:last-child{margin-bottom:0}
+
+.feature-block:nth-child(even) .visual-card::before{background:linear-gradient(90deg,hsl(216 90% 55%),hsl(var(--gold)))}
+</style>
+</head>
+<body>
+<div id="mount-header"></div>
+
+<!-- HERO -->
+<section class="hero section-dark">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="glow glow-gold parallax" data-parallax="0.06"></div>
+    <div class="glow glow-blue parallax" data-parallax="0.1"></div>
+  </div>
+  <div class="container">
+    <span class="eyebrow reveal">FONCTIONNALITÉS</span>
+    <h2 class="reveal d1" style="color:#fff;margin:.6rem auto 1.2rem;max-width:18ch">Tout pour piloter votre cabinet</h2>
+    <p class="lead reveal d2" style="max-width:62ch;margin:0 auto">Une plateforme complète qui centralise échéances fiscales, CRM, onboarding, gestion documentaire et tâches. Connectée directement à impots.gouv et à l'INPI.</p>
+    <div class="hero-cta reveal d3" style="margin-top:2.2rem">
+      <a href="app/" class="btn btn-gold btn-lg">Réserver une démo</a>
+      <a href="tarifs.html" class="btn btn-outline btn-lg" style="background:transparent;color:#fff;border-color:hsl(var(--foreground)/.25)">Voir les tarifs</a>
+    </div>
+  </div>
+</section>
+
+<!-- FONCTIONNALITÉS -->
+<section class="section">
+  <div class="container">
+
+    <!-- 01 -->
+    <div class="feature-block split">
+      <div class="feat-text reveal">
+        <div class="feat-eyebrow"><span class="feat-num">01</span><span class="eyebrow">NOUVEAU · INTELLIGENCE ARTIFICIELLE</span></div>
+        <h3 class="feat-block-title">Assistant IA + support humain</h3>
+        <p class="lead">Un copilote intelligent disponible en continu, qui connaît votre cabinet et bascule vers un humain dès que nécessaire.</p>
+        <ul class="check-list">
+          <li>Dispo 24/7 sur toutes les pages</li>
+          <li>Connaît tout Kileyt (process, raccourcis, modules, exports)</li>
+          <li>Prend en compte le contexte du dossier</li>
+          <li>Bascule humain en 1 clic</li>
+          <li>Réponses en quelques secondes</li>
+          <li>Apprentissage continu</li>
+        </ul>
+      </div>
+      <div class="reveal-scale d1">
+        <div class="ia-card">
+          <div class="ia-head">
+            <div class="av">K</div>
+            <div><b>Assistant Kileyt</b><small>En ligne · répond en quelques secondes</small></div>
+          </div>
+          <div class="bubble ai">Bonjour ! Comment puis-je vous aider sur le dossier MARTIN SARL ?</div>
+          <div class="bubble me">Quand est la prochaine échéance TVA ?</div>
+          <div class="bubble ai">Échéance TVA CA3 le 24 du mois. Je peux préparer l'export ou vous mettre en relation avec un conseiller.</div>
+          <div class="ia-input"><input type="text" placeholder="Posez votre question…" aria-label="Question"><div class="send">↑</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 -->
+    <div class="feature-block split">
+      <div class="reveal-scale">
+        <div class="visual-card">
+          <div class="vc-head"><div class="vc-ico">▦</div><div><b>Mon dashboard</b><small>Widgets personnalisables</small></div></div>
+          <div class="vc-kpis">
+            <div class="vc-kpi"><b>128</b><span>Dossiers</span></div>
+            <div class="vc-kpi"><b>14</b><span>Échéances</span></div>
+            <div class="vc-kpi"><b>97%</b><span>À jour</span></div>
+          </div>
+          <div class="vc-row"><span class="vc-label">Vue Home</span><span class="vc-sub">Cabinet</span></div>
+          <div class="vc-row"><span class="vc-label">Dashboard perso</span><span class="vc-sub">Drag &amp; drop</span></div>
+          <div class="vc-row"><span class="vc-label">Calendrier</span><span class="vc-sub">Temps réel</span></div>
+        </div>
+      </div>
+      <div class="feat-text reveal d1">
+        <div class="feat-eyebrow"><span class="feat-num">02</span><span class="eyebrow">VUE D'ENSEMBLE DE VOTRE CABINET</span></div>
+        <h3 class="feat-block-title">Home + Mon dashboard personnalisable</h3>
+        <p class="lead">Composez votre cockpit avec les widgets qui comptent, et retrouvez vos préférences à chaque connexion.</p>
+        <ul class="check-list">
+          <li>3 vues (Home, Dashboard perso, Calendrier)</li>
+          <li>Grille drag &amp; drop de widgets</li>
+          <li>3 KPIs par page dossier</li>
+          <li>Historique des chiffres clés</li>
+          <li>Alertes temps réel</li>
+          <li>Mémorisation des préférences</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 03 -->
+    <div class="feature-block split">
+      <div class="feat-text reveal">
+        <div class="feat-eyebrow"><span class="feat-num">03</span><span class="eyebrow">TVA, IS, CFE, TAXE FONCIÈRE, MESSAGERIE</span></div>
+        <h3 class="feat-block-title">Suivi des échéances fiscales</h3>
+        <p class="lead">Synchronisé en direct avec impots.gouv, Kileyt suit chaque obligation et vous alerte avant l'échéance.</p>
+        <ul class="check-list">
+          <li>Sync auto impots.gouv</li>
+          <li>TVA mensuelle/trimestrielle</li>
+          <li>Alertes IS, CFE, CVAE, Taxe foncière</li>
+          <li>Messagerie sécurisée</li>
+          <li>Tableau par client et période</li>
+          <li>Export Excel et PDF</li>
+        </ul>
+      </div>
+      <div class="reveal-scale d1">
+        <div class="visual-card">
+          <div class="vc-head"><div class="vc-ico">📅</div><div><b>Échéances fiscales</b><small>Synchronisé impots.gouv</small></div></div>
+          <div class="vc-row"><span><span class="badge badge-tva">TVA</span> <span class="vc-label">CA3 mensuelle</span></span><span class="vc-sub">24 juin</span></div>
+          <div class="vc-row"><span><span class="badge badge-is">IS</span> <span class="vc-label">Acompte</span></span><span class="vc-sub">15 juin</span></div>
+          <div class="vc-row"><span><span class="badge badge-cfe">CFE</span> <span class="vc-label">Solde</span></span><span class="vc-sub">15 déc</span></div>
+          <div class="vc-row"><span><span class="badge badge-cvae">CVAE</span> <span class="vc-label">Acompte</span></span><span class="vc-sub">15 sept</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 -->
+    <div class="feature-block split">
+      <div class="reveal-scale">
+        <div class="visual-card">
+          <div class="vc-head"><div class="vc-ico">📊</div><div><b>Synthèse des échéances</b><small>Vue agrégée</small></div></div>
+          <div class="vc-prog"><div class="vc-pl"><span>TVA</span><span>62%</span></div><div class="vc-bar"><i style="width:62%"></i></div></div>
+          <div class="vc-prog"><div class="vc-pl"><span>IS</span><span>48%</span></div><div class="vc-bar"><i style="width:48%"></i></div></div>
+          <div class="vc-prog"><div class="vc-pl"><span>CFE</span><span>80%</span></div><div class="vc-bar"><i style="width:80%"></i></div></div>
+          <div class="vc-prog" style="margin-bottom:0"><div class="vc-pl"><span>CVAE</span><span>35%</span></div><div class="vc-bar"><i style="width:35%"></i></div></div>
+        </div>
+      </div>
+      <div class="feat-text reveal d1">
+        <div class="feat-eyebrow"><span class="feat-num">04</span><span class="eyebrow">VUE AGRÉGÉE + GRAPHES CLIQUABLES</span></div>
+        <h3 class="feat-block-title">Synthèse des échéances</h3>
+        <p class="lead">Une vision macro de toutes les obligations du cabinet, avec des graphes interactifs pour aller au détail en un clic.</p>
+        <ul class="check-list">
+          <li>Agrégation de TOUTES les échéances</li>
+          <li>Filtres par période</li>
+          <li>Regroupement par type/client/collaborateur</li>
+          <li>Graphes interactifs cliquables</li>
+          <li>Drill-down</li>
+          <li>Export filtré</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 05 -->
+    <div class="feature-block split">
+      <div class="feat-text reveal">
+        <div class="feat-eyebrow"><span class="feat-num">05</span><span class="eyebrow">COTISATION SUR LA VALEUR AJOUTÉE</span></div>
+        <h3 class="feat-block-title">Suivi CVAE intégré</h3>
+        <p class="lead">Un module dédié à la CVAE, relié au calendrier et aux alertes, pour ne plus jamais rater une deadline.</p>
+        <ul class="check-list">
+          <li>Tableau dédié CVAE</li>
+          <li>Filtres avancés</li>
+          <li>Export Excel</li>
+          <li>Intégration au calendrier</li>
+          <li>Alertes deadlines</li>
+        </ul>
+      </div>
+      <div class="reveal-scale d1">
+        <div class="visual-card">
+          <div class="vc-head"><div class="vc-ico">🧾</div><div><b>Suivi CVAE</b><small>Cotisation valeur ajoutée</small></div></div>
+          <div class="vc-row"><span><span class="badge badge-cvae">CVAE</span> <span class="vc-label">DURAND &amp; Cie</span></span><span class="vc-sub">Acompte 1</span></div>
+          <div class="vc-row"><span><span class="badge badge-cvae">CVAE</span> <span class="vc-label">LEROY SAS</span></span><span class="vc-sub">Acompte 2</span></div>
+          <div class="vc-row"><span><span class="badge badge-success">Déposé</span> <span class="vc-label">MARTIN SARL</span></span><span class="vc-sub">Solde</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 -->
+    <div class="feature-block split">
+      <div class="reveal-scale">
+        <div class="visual-card">
+          <div class="vc-head"><div class="vc-ico">⚠️</div><div><b>Anomalies détectées</b><small>Cabinet vs impots.gouv</small></div></div>
+          <div class="vc-row"><span><span class="badge badge-danger">Écart</span> <span class="vc-label">TVA mars</span></span><span class="vc-sub">À régulariser</span></div>
+          <div class="vc-row"><span><span class="badge badge-warning">Manquant</span> <span class="vc-label">Acompte IS</span></span><span class="vc-sub">Non synchro</span></div>
+          <div class="vc-row"><span><span class="badge badge-success">Corrigé</span> <span class="vc-label">CFE 2025</span></span><span class="vc-sub">Historique</span></div>
+        </div>
+      </div>
+      <div class="feat-text reveal d1">
+        <div class="feat-eyebrow"><span class="feat-num">06</span><span class="eyebrow">DÉTECTION DES ANOMALIES</span></div>
+        <h3 class="feat-block-title">Échéances non synchronisées</h3>
+        <p class="lead">Kileyt confronte vos données à celles de l'administration et vous guide pour régulariser chaque incohérence.</p>
+        <ul class="check-list">
+          <li>Alertes incohérences</li>
+          <li>Comparaison cabinet vs impots.gouv</li>
+          <li>Historique corrections</li>
+          <li>Workflow de régularisation guidé</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 07 -->
+    <div class="feature-block split">
+      <div class="feat-text reveal">
+        <div class="feat-eyebrow"><span class="feat-num">07</span><span class="eyebrow">ORGANISATION PÉRIODE FISCALE</span></div>
+        <h3 class="feat-block-title">Suivi des bilans</h3>
+        <p class="lead">Pilotez la production de bilans sur toute la campagne, avec un planning partagé et l'avancement visible par l'équipe.</p>
+        <ul class="check-list">
+          <li>Récupération auto des dates de clôture</li>
+          <li>Planning de production</li>
+          <li>Avancement par dossier</li>
+          <li>Notes visibles par l'équipe</li>
+          <li>Alertes deadlines</li>
+          <li>Coordination équipe</li>
+        </ul>
+      </div>
+      <div class="reveal-scale d1">
+        <div class="visual-card">
+          <div class="vc-head"><div class="vc-ico">📁</div><div><b>Production bilans</b><small>Campagne en cours</small></div></div>
+          <div class="vc-prog"><div class="vc-pl"><span>MARTIN SARL</span><span>Révision</span></div><div class="vc-bar"><i style="width:70%"></i></div></div>
+          <div class="vc-prog"><div class="vc-pl"><span>DURAND &amp; Cie</span><span>Saisie</span></div><div class="vc-bar"><i style="width:40%"></i></div></div>
+          <div class="vc-prog" style="margin-bottom:0"><div class="vc-pl"><span>LEROY SAS</span><span>Finalisé</span></div><div class="vc-bar"><i style="width:100%"></i></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 08 -->
+    <div class="feature-block split">
+      <div class="reveal-scale">
+        <div class="visual-card">
+          <div class="vc-head"><div class="vc-ico">🏛️</div><div><b>Dépôt des comptes</b><small>AGO &amp; DCA distincts</small></div></div>
+          <div class="vc-row"><span><span class="badge badge-bilan">AGO</span> <span class="vc-label">Approbation</span></span><span class="vc-sub">30 juin</span></div>
+          <div class="vc-row"><span><span class="badge badge-is">DCA</span> <span class="vc-label">Dépôt greffe</span></span><span class="vc-sub">31 juil</span></div>
+          <div class="vc-row"><span><span class="badge badge-success">Déposé</span> <span class="vc-label">LEROY SAS</span></span><span class="vc-sub">2025</span></div>
+        </div>
+      </div>
+      <div class="feat-text reveal d1">
+        <div class="feat-eyebrow"><span class="feat-num">08</span><span class="eyebrow">APPROBATION + DÉPÔT DISTINCTS</span></div>
+        <h3 class="feat-block-title">Dépôt des comptes annuels (DCA &amp; AGO)</h3>
+        <p class="lead">Suivez séparément l'approbation des comptes et leur dépôt au greffe, avec alertes légales et vue annuelle.</p>
+        <ul class="check-list">
+          <li>Distinction AGO/DCA</li>
+          <li>Vue annuelle</li>
+          <li>Filtres dédiés</li>
+          <li>Intégration calendrier</li>
+          <li>Avancement par dossier</li>
+          <li>Alertes légales</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 09 -->
+    <div class="feature-block split">
+      <div class="feat-text reveal">
+        <div class="feat-eyebrow"><span class="feat-num">09</span><span class="eyebrow">DETTES FISCALES &amp; ACCÈS</span></div>
+        <h3 class="feat-block-title">Suivi des habilitations</h3>
+        <p class="lead">Gardez la maîtrise des mandats impots.gouv et visualisez les dettes fiscales de chaque dossier en un coup d'œil.</p>
+        <ul class="check-list">
+          <li>Gestion des mandats impots.gouv</li>
+          <li>Habilitations actives/expirées</li>
+          <li>Vue des dettes fiscales</li>
+          <li>Alertes mandats à renouveler</li>
+        </ul>
+      </div>
+      <div class="reveal-scale d1">
+        <div class="visual-card">
+          <div class="vc-head"><div class="vc-ico">🔑</div><div><b>Habilitations</b><small>Mandats impots.gouv</small></div></div>
+          <div class="vc-row"><span><span class="badge badge-success">Active</span> <span class="vc-label">MARTIN SARL</span></span><span class="vc-sub">jusqu'au 2027</span></div>
+          <div class="vc-row"><span><span class="badge badge-warning">À renouveler</span> <span class="vc-label">DURAND &amp; Cie</span></span><span class="vc-sub">dans 12 j</span></div>
+          <div class="vc-row"><span><span class="badge badge-danger">Expirée</span> <span class="vc-label">LEROY SAS</span></span><span class="vc-sub">depuis 5 j</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="feature-block split">
+      <div class="reveal-scale">
+        <div class="visual-card">
+          <div class="vc-head"><div class="vc-ico">📜</div><div><b>Attestations fiscales</b><small>Régularité en 1 clic</small></div></div>
+          <div class="vc-row"><span><span class="badge badge-success">Valide</span> <span class="vc-label">MARTIN SARL</span></span><span class="vc-sub">Télécharger</span></div>
+          <div class="vc-row"><span><span class="badge badge-success">Valide</span> <span class="vc-label">DURAND &amp; Cie</span></span><span class="vc-sub">Partager</span></div>
+          <div class="vc-row"><span><span class="badge badge-warning">Expirée</span> <span class="vc-label">LEROY SAS</span></span><span class="vc-sub">Régénérer</span></div>
+        </div>
+      </div>
+      <div class="feat-text reveal d1">
+        <div class="feat-eyebrow"><span class="feat-num">10</span><span class="eyebrow">RÉGULARITÉ FISCALE EN 1 CLIC</span></div>
+        <h3 class="feat-block-title">Attestations fiscales</h3>
+        <p class="lead">Récupérez les attestations de régularité à la demande et partagez-les en toute sécurité avec vos clients.</p>
+        <ul class="check-list">
+          <li>Téléchargement auto</li>
+          <li>Historique</li>
+          <li>Alertes expirées</li>
+          <li>Partage sécurisé avec le client</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 11 -->
+    <div class="feature-block split">
+      <div class="feat-text reveal">
+        <div class="feat-eyebrow"><span class="feat-num">11</span><span class="eyebrow">DÉTECTION AUTOMATIQUE DES CRÉATIONS</span></div>
+        <h3 class="feat-block-title">Onboarding client + Intégration INPI</h3>
+        <p class="lead">Connecté à l'INPI, Kileyt détecte les nouvelles entreprises, synchronise leurs données légales et lance l'onboarding automatiquement.</p>
+        <ul class="check-list">
+          <li>Connexion INPI (détection des créations)</li>
+          <li>Sync données légales (statut, dirigeants, actes)</li>
+          <li>Consultation docs INPI</li>
+          <li>Onboarding auto déclenché</li>
+          <li>Checklist personnalisable</li>
+          <li>Demande de pièces en 1 clic</li>
+          <li>Notifs client email/SMS</li>
+        </ul>
+      </div>
+      <div class="reveal-scale d1">
+        <div class="visual-card">
+          <div class="vc-head"><div class="vc-ico">🏢</div><div><b>Onboarding · INPI</b><small>Nouvelle création détectée</small></div></div>
+          <div class="vc-row"><span class="vc-label">Données légales</span><span class="vc-sub"><span class="badge badge-success">Synchro</span></span></div>
+          <div class="vc-row"><span class="vc-label">Pièces demandées</span><span class="vc-sub">4 / 6</span></div>
+          <div class="vc-prog" style="margin:0"><div class="vc-pl"><span>Checklist onboarding</span><span>67%</span></div><div class="vc-bar"><i style="width:67%"></i></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12 -->
+    <div class="feature-block split">
+      <div class="reveal-scale">
+        <div class="visual-card">
+          <div class="vc-head"><div class="vc-ico">🎯</div><div><b>Pipeline prospects</b><small>CRM intégré</small></div></div>
+          <div class="vc-kanban">
+            <div class="vc-kcol"><h5>Contact</h5><div class="vc-kcard">SAS NOVA</div><div class="vc-kcard">EI Petit</div></div>
+            <div class="vc-kcol"><h5>Devis</h5><div class="vc-kcard">SARL Vert</div></div>
+            <div class="vc-kcol"><h5>Signé</h5><div class="vc-kcard">DURAND &amp; Cie</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="feat-text reveal d1">
+        <div class="feat-eyebrow"><span class="feat-num">12</span><span class="eyebrow">DE LA PROSPECTION À LA SIGNATURE</span></div>
+        <h3 class="feat-block-title">CRM &amp; Suivi prospects</h3>
+        <p class="lead">Un pipeline Kanban pour piloter la prospection, relancer au bon moment et convertir un prospect en client en un clic.</p>
+        <ul class="check-list">
+          <li>Pipeline Kanban</li>
+          <li>Historique des échanges</li>
+          <li>Relances auto</li>
+          <li>Conversion prospect→client en 1 clic</li>
+          <li>Statistiques de conversion</li>
+          <li>Import/export contacts</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 13 -->
+    <div class="feature-block split">
+      <div class="feat-text reveal">
+        <div class="feat-eyebrow"><span class="feat-num">13</span><span class="eyebrow">ORGANISATION ET PRODUCTIVITÉ</span></div>
+        <h3 class="feat-block-title">Gestion des tâches</h3>
+        <p class="lead">Attribuez, taguez et priorisez les tâches du cabinet en vue Kanban ou liste, avec mentions, rappels et pièces jointes.</p>
+        <ul class="check-list">
+          <li>Attribution par collaborateur</li>
+          <li>Tags et urgences</li>
+          <li>Deadlines/rappels</li>
+          <li>Tâches récurrentes</li>
+          <li>Vue Kanban et liste</li>
+          <li>@mentions</li>
+          <li>Filtres</li>
+          <li>Commentaires et pièces jointes</li>
+        </ul>
+      </div>
+      <div class="reveal-scale d1">
+        <div class="visual-card">
+          <div class="vc-head"><div class="vc-ico">✅</div><div><b>Mes tâches</b><small>Kanban &amp; liste</small></div></div>
+          <div class="vc-row"><span class="vc-label">Préparer bilan MARTIN</span><span class="vc-sub"><span class="badge badge-danger">Urgent</span></span></div>
+          <div class="vc-row"><span class="vc-label">Relancer pièces DURAND</span><span class="vc-sub"><span class="badge badge-warning">Auj.</span></span></div>
+          <div class="vc-row"><span class="vc-label">Export TVA mensuel</span><span class="vc-sub"><span class="badge badge-muted">Récurrent</span></span></div>
+          <div class="vc-tags"><span class="vc-tag">@Sophie</span><span class="vc-tag">@Karim</span><span class="vc-tag">+ pièces</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 14 -->
+    <div class="feature-block split">
+      <div class="reveal-scale">
+        <div class="visual-card">
+          <div class="vc-head"><div class="vc-ico">👥</div><div><b>Équipes</b><small>Par pôle ou par client</small></div></div>
+          <div class="vc-row"><span class="vc-label">Pôle Social</span><span class="vc-sub">5 membres</span></div>
+          <div class="vc-row"><span class="vc-label">Pôle Fiscal</span><span class="vc-sub">7 membres</span></div>
+          <div class="vc-row"><span class="vc-label">Bureau Lyon</span><span class="vc-sub">3 membres</span></div>
+        </div>
+      </div>
+      <div class="feat-text reveal d1">
+        <div class="feat-eyebrow"><span class="feat-num">14</span><span class="eyebrow">ORGANISATION PAR PÔLE OU PAR CLIENT</span></div>
+        <h3 class="feat-block-title">Gestion des équipes</h3>
+        <p class="lead">Structurez le cabinet en pôles ou en équipes, affectez des dossiers entiers et gardez une vision consolidée multi-bureaux.</p>
+        <ul class="check-list">
+          <li>Équipes personnalisées (pôles)</li>
+          <li>Affecter un dossier à toute une équipe</li>
+          <li>Vision consolidée</li>
+          <li>Permissions par équipe</li>
+          <li>Idéal multi-bureaux</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 15 -->
+    <div class="feature-block split">
+      <div class="feat-text reveal">
+        <div class="feat-eyebrow"><span class="feat-num">15</span><span class="eyebrow">DISPONIBLE SUR IOS · ANDROID À VENIR</span></div>
+        <h3 class="feat-block-title">Application mobile dédiée</h3>
+        <p class="lead">Validez et consultez vos dossiers en mobilité, avec notifications push, sync temps réel et l'assistant IA dans votre poche.</p>
+        <ul class="check-list">
+          <li>App iOS dispo</li>
+          <li>Notifs push</li>
+          <li>Validation en mobilité</li>
+          <li>Consultation dossiers/chiffres clés</li>
+          <li>Sync temps réel</li>
+          <li>Assistant IA mobile</li>
+          <li>Android à venir</li>
+        </ul>
+      </div>
+      <div class="reveal-scale d1">
+        <div class="visual-card">
+          <div class="vc-head"><div class="vc-ico">📱</div><div><b>Kileyt Mobile</b><small>iOS · Android à venir</small></div></div>
+          <div class="vc-row"><span class="vc-label">Validation à distance</span><span class="vc-sub"><span class="badge badge-success">iOS</span></span></div>
+          <div class="vc-row"><span class="vc-label">Notifications push</span><span class="vc-sub">Temps réel</span></div>
+          <div class="vc-row"><span class="vc-label">Assistant IA mobile</span><span class="vc-sub">Intégré</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section section-dark center">
+  <div class="container">
+    <h2 class="reveal">Prêt à transformer votre cabinet ?</h2>
+    <p class="lead reveal d1" style="max-width:54ch;margin:1rem auto 2.2rem">Centralisez échéances, CRM, onboarding et tâches dans un seul cockpit connecté aux impôts et à l'INPI. Découvrez Kileyt en conditions réelles.</p>
+    <div class="hero-cta reveal d2">
+      <a href="app/" class="btn btn-gold btn-lg">Réserver une démo</a>
+      <a href="tarifs.html" class="btn btn-outline btn-lg" style="background:transparent;color:#fff;border-color:hsl(var(--foreground)/.25)">Voir les tarifs</a>
+    </div>
+  </div>
+</section>
+
+<div id="mount-footer"></div>
+<script src="assets/js/marketing.js"></script>
+</body>
+</html>
